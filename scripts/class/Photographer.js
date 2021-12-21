@@ -1,15 +1,16 @@
 class Photographer{
     constructor(data){
-        this._name = data.name;
-        this._id = data.id;
-        this._city = data.city;
-        this._country = data.country;
-        this._tagline = data.tagline;
-        this._price = data.price;
-        this._portrait = data.portrait;
-
-        return { _name, _picture, _city, _country, _tagline, _price, getUserCardDOM }
+        this.data = data;
+        this.name = data.name;
+        this.id = data.id;
+        this.city = data.city;
+        this.country = data.country;
+        this.tagline = data.tagline;
+        this.price = data.price;
+        this.portrait = data.portrait;
+        this.picture = `assets/photographers/${data.portrait}`; //Tete du photographe
     }
+
 
     getUserCardDOM(){
         const a = document.createElement("a");
@@ -19,13 +20,13 @@ class Photographer{
         const h3 = document.createElement("h3");
         const p1 = document.createElement("p");
         const p2 = document.createElement("p");
-        img.setAttribute("src", `assets/photographers/${_portrait}`);                        //Ajout de l'attribut src avec la bonne source la photo (lien)
-        img.setAttribute("alt", _name);   
-        h2.textContent = _name;                                  //Ajout du nom du photographe
-        h3.textContent = _city + ", " + _country;
-        p1.textContent = _tagline;  
+        img.setAttribute("src", `assets/photographers/${this.data.portrait}`);                        //Ajout de l'attribut src avec la bonne source la photo (lien)
+        img.setAttribute("alt", this.data.name);   
+        h2.textContent = this.data.name;                                  //Ajout du nom du photographe
+        h3.textContent = this.data.city + ", " + this.data.country;
+        p1.textContent = this.data.tagline;  
         p1.setAttribute("class", "photographer_description");
-        p2.textContent = _price + "€/jour";          
+        p2.textContent = this.data.price + "€/jour";          
         p2.setAttribute("class", "photographer_price");  
         a.setAttribute("href", "./photographer.html");    
         a.appendChild(article);  
@@ -36,5 +37,4 @@ class Photographer{
         article.appendChild(p2);                       
         return (a);                                  
     }
-    
 }

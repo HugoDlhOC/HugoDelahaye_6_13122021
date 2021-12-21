@@ -1,6 +1,7 @@
+/*PLUS UTILISÉ
 //FACTORY
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+    const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`; //Tete du photographe
     
@@ -21,7 +22,8 @@ function photographerFactory(data) {
         p1.setAttribute("class", "photographer_description");
         p2.textContent = price + "€/jour";          
         p2.setAttribute("class", "photographer_price");  
-        a.setAttribute("href", "./photographer.html");    
+        a.setAttribute("href", `./photographer.html?id=${id}`);    
+        a.setAttribute("id", `${id}`);
         a.appendChild(article);                
         article.appendChild(img);                                           
         article.appendChild(h2);
@@ -30,5 +32,6 @@ function photographerFactory(data) {
         article.appendChild(p2);                       
         return (a);                                       //Retourne l'aricle créé                     
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
+    return { name, picture, city, country, tagline, price, id, getUserCardDOM }
 }
+*/

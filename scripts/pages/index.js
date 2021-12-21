@@ -14,7 +14,7 @@
 
         const reponse = await fetch("./data/photographers.json");
         const data = await reponse.json();
-        //console.log(data.photographers[0].name);
+        console.log(data);
 
         return data;   
     }
@@ -23,7 +23,7 @@
         const photographersSection = document.querySelector(".photographer_section");
 
         photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
+            const photographerModel = new Photographer(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
@@ -34,6 +34,6 @@
         const { photographers } = await getPhotographers(); //AWAIT : attend la promesse de getPhotographers()
         displayData(photographers); //On affiche les données des photographes
     };
-    
+
     init(); //INITIALISATION
     
