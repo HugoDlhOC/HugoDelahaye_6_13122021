@@ -4,8 +4,56 @@
 
 .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
     margin: 0 100px;
+}
+
+.photograph-header img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    grid-area: profile_picture;
+}
+
+.photograph-header article{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);  /*Création de 4 colonnes*/
+    grid-template-rows: repeat(3, 1fr);    /*Création de 10 lignes*/
+    grid-template-areas:    /*Définition de qui va occuper quoi dans la grille*/
+        "name           name        name                name                    profile_picture"
+        "location       location    contact_btn         contact_btn             profile_picture"
+        "description    description description         description             profile_picture";
+
+        padding: 40px;
+}
+
+.photograph-header h2{
+    grid-area: name;
+    color: #D3573C;
+    font-size: 64px;
+
+}
+
+.photograph-header h3{
+    grid-area: location;
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.photograph-header .photographer_description{
+    grid-area: description;
+    font-size: 18px;
+    color: #525252;
+    margin-top: -35px;
+}
+
+.photograph-header article h3, .photograph-header article h2, .photographer_description{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+#contact_me{
+    grid-area: contact_btn;
 }
 
 .contact_button {
@@ -19,6 +67,26 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.media-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 200px;
+    margin-left: 200px;
+}
+
+.media-container article{
+    padding: 10px;
+}
+
+.media img ,video{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .modal {

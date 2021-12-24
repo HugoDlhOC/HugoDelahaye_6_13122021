@@ -13,7 +13,9 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button id="contact_me" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      </div>
+      <div class="media-container">
       </div>
     </main>
     <div id="contact_modal">
@@ -31,7 +33,9 @@
 				</form>
 			</div>
 		</div>
+    <script type="module" src="./scripts/class/Photographer.js"></script>
+    <script type="module" src="./scripts/class/Media.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="./scripts/pages/photographer.js"></script>
+    <script type="module" src="./scripts/pages/photographer.js"></script>
   </body>
 </html>
