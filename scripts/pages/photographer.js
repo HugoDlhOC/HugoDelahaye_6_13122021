@@ -141,3 +141,10 @@ function displayDataPhotographerMediaVideos(DataMediaVideosPhotographers) {
 
 displayDataPhotographerMediaVideos(dataVideos);
 
+function getSelectValue(){
+        let selectedValue = document.getElementById("menu").value;
+        console.log(selectedValue);
+}
+
+
+
