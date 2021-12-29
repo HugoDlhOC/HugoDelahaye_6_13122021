@@ -80,25 +80,68 @@
 
 .media-container article{
     padding: 10px;
+    margin-left: 50px;
 }
 
 .media img ,video{
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
+.description_media{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
+}
+
+.description_media p{
+    font-size: 24px;
+    color: #901C1C;
+    margin-top: 5px;
+}
+
+.description_media span{
+    margin-top: -15px;
+    font-size: 24px;
+    margin-left: auto;
+    color: #901C1C;
+    margin-right: 5px;
+}
+
+.description_media i{
+    color: #901C1C;
+    margin-top: -15px;
+}
+
+/*MENU*/
+.sort_menu{
+    display: flex;
+    margin-left: 100px;
+    align-items: center;
+    position: relative;
+}
+.sort_menu label{
+    font-weight: bold;
+    margin-right: 40px;
+    font-size: 18px;
+}
+select{
+    appearance: none;
+    background-color: #901C1C;
+    color: white;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 18px 35px 18px 18px;
+
+}
+
+.sort_menu i{
+    position: absolute;
+    left: 215px;
+    color: white;
 }
 
 .modal header {

@@ -38,6 +38,8 @@ switch(IdPhotograph){
                 console.log("Les données du photographes sont introuvables");
 }
 
+console.log(dataActualPhotographer);
+
 //Afficher les données récupérées en HTML
 function displayDataPhotographerInfos(photographers) {
         const photographersSection = document.querySelector(".photograph-header");
@@ -123,7 +125,6 @@ console.log(positionMedia);
 La variable i place les éléments au bon endroit dans l'HTML*/
 
 
-
 function displayDataPhotographerMediaVideos(DataMediaVideosPhotographers) {
         let photographersSection = document.querySelector("#media");
         let i = positionMedia;
@@ -141,10 +142,40 @@ function displayDataPhotographerMediaVideos(DataMediaVideosPhotographers) {
 
 displayDataPhotographerMediaVideos(dataVideos);
 
-function getSelectValue(){
-        let selectedValue = document.getElementById("menu").value;
-        console.log(selectedValue);
-}
+//Évènement sur le menu de tri pour voir quand tel élément est sélectionné
+const selectedMenu = document.getElementById("menu");
 
+selectedMenu.addEventListener("change", (e) =>{
+        const selectedMenuValue = selectedMenu.value;
+        console.log(selectedMenuValue);
+});
+
+//Récupération des likes des différents médias du photographe actuel
+//Images
+console.log(dataImages[1].likes);
+
+//Calculer l'ensemble des likes des photographes
+//Retourne le nombre total de likes
+function totalNumberOfLikes(data){
+        const lengthData = data.length;
+        let arrayOfLikes = [length];
+        let result = 0;
+
+        //Rangement de tous les likes dans un tableau
+        for(let i = 0; i < lengthData; i++){
+                arrayOfLikes[i] = parseInt(data[i].likes);
+        }
+        
+        //Calcul de tous les likes
+        for(let j = 0; j < arrayOfLikes.length; j++){
+                result = result + arrayOfLikes[j];
+        }
+        result = String(result);
+        return result;
+}
+/*
+let objMedia = new Media(allDataMediaPhtgs);
+let nbrLikes = totalNumberOfLikes(allDataMediaPhtgs);
+objMedia.HTMLForFixedContainer(nbrLikes, )*/
 
 
