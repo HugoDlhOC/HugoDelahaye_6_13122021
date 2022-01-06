@@ -162,6 +162,17 @@ function sortMediasByTitle(medias) {
     });
 }
 
+//div nombre total likes + tarif photographe (fixedContainer)
+//Nombre total de likes
+const totalNbLikes = totalNumberOfLikes(photographer.medias);
+console.log(totalNbLikes);
+
+
+let objMedia = new Media(photographer.medias);
+const DOMCard = objMedia.HTMLForFixedContainer(totalNbLikes, photographer.price);
+const fixedContainer = document.querySelector(".fixed_container");
+fixedContainer.appendChild(DOMCard);
+
 
 
 

@@ -30,6 +30,7 @@ export class Media{
         divDescriptionMedia.appendChild(titleOfMedia);
         titleOfMedia.innerHTML = this.data.title;
         divDescriptionMedia.appendChild(numberOfLikes);
+        numberOfLikes.innerHTML = this.data.likes;
         divDescriptionMedia.appendChild(iconeHeart);
         return (article);
     }
@@ -38,8 +39,9 @@ export class Media{
         const containerPrixTotalLikes = document.createElement("div");
         const numberTotalOfLikes = document.createElement("span");
         const iconeHeart = document.createElement("i");
-        const priceOfPhotographer = document.createAttribute("span");
+        const priceOfPhotographer = document.createElement("span");
         containerPrixTotalLikes.setAttribute("class", "container_prix_total_likes");
+        iconeHeart.setAttribute("class", "fas fa-heart");
         numberTotalOfLikes.setAttribute("id", "total_likes_photographer");
         priceOfPhotographer.setAttribute("id", "price_photographer");
         numberTotalOfLikes.textContent = numberOfLikes;

@@ -1,3 +1,7 @@
+#main{
+    position: relative;
+}
+
 #contact_modal {
     display: none;
 }
@@ -180,6 +184,25 @@
     color: white;
     font-size: 18px;
     padding-right: 15px;
+}
+
+/*Fixed container*/
+.fixed_container{
+    background-color: #DB8876;
+    position: fixed;
+    right: 40px;
+    bottom: 0px;
+    padding: 20px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.fixed_container #total_likes_photographer, #price_photographer{
+    font-size: 24px;
+}
+
+.fixed_container i{
+    margin-right: 60px;
+    margin-left: 5px;
 }
 
 .modal header {
