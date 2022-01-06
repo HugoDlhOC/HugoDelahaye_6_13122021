@@ -115,33 +115,71 @@
 }
 
 /*MENU*/
-.sort_menu{
+.sort_menu_close{
+    margin: 0 100px;
     display: flex;
-    margin-left: 100px;
-    align-items: center;
-    position: relative;
 }
-.sort_menu label{
-    font-weight: bold;
-    margin-right: 40px;
-    font-size: 18px;
-}
-select{
-    appearance: none;
+
+.sort_menu_close button{
+    padding: 10px;
+    border-radius: 5px 0px 0px 5px;
     background-color: #901C1C;
-    color: white;
-    outline: none;
-    border: 0;
-    border-radius: 5px;
     font-size: 18px;
-    padding: 18px 35px 18px 18px;
-
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
 }
 
-.sort_menu i{
-    position: absolute;
-    left: 215px;
+.sort_menu_close i{
+    background-color: #901C1C;
+    padding: 10px;
+    border-radius: 0px 5px 5px 0px;
     color: white;
+}
+
+.sort_menu_open{
+    position: relative;
+    display: none;
+}
+
+.sort_menu_open ul{
+    margin-left: 100px;
+    padding-left: 0px;
+    position: absolute;
+    top: -58px;
+}
+
+.sort_menu_open .filter{
+    text-decoration: none;
+    list-style-type: none;
+    background-color: #901C1C;
+    padding: 10px 42px 10px 10px;
+}
+
+.sort_menu_open #filter_1{
+    border-radius: 5px 5px 0px 0px;
+}
+
+.sort_menu_open #filter_1, #filter_2{
+    border-bottom: 2px solid white;
+}
+
+.sort_menu_open #filter_3{
+    border-radius: 0px 0px 5px 5px;
+}
+
+.sort_menu_open i{
+    color: white;
+    align-self: center;
+    margin-right: -14px;
+}
+
+.sort_menu_open .filter_link{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding-right: 15px;
 }
 
 .modal header {

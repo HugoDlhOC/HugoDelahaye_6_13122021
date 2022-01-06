@@ -1,5 +1,5 @@
 export class Photographer{
-    constructor(data){
+    constructor(data, medias){
         this.data = data;
         this.name = data.name;
         this.id = data.id;
@@ -9,6 +9,7 @@ export class Photographer{
         this.price = data.price;
         this.portrait = data.portrait;
         this.picture = `assets/photographers/portraits/${data.portrait}`; //Tete du photographe
+        this.medias = medias;
     }
     
 

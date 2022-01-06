@@ -16,14 +16,23 @@
       <div class="photograph-header">
         <button id="contact_me" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
-      <div class="sort_menu">
-        <label for="menu">Trier par</label>
-        <select id="menu">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
-        <i class="fas fa-chevron-up"></i>
+      <div class="sort_menu_close">
+        <button id="button_open_menu">Popularité</button>
+        <i id="menu_icon_down" class="fas fa-chevron-down"></i>
+      </div>
+      <div class="sort_menu_open">
+        <ul>
+          <li class="filter" id="filter_1">
+            <a data-filter-type="popularity" class="filter_link" href="#">Popularité</a>
+            <i id="menu_icon_up" class="fas fa-chevron-up"></i>
+          </li>
+          <li class="filter" id="filter_2">
+            <a data-filter-type="date" class="filter_link" href="#">Date</a>
+          </li>
+          <li class="filter" id="filter_3">
+            <a data-filter-type="title" class="filter_link" href="#">Titre</a>
+          </li>
+        </ul>
       </div>
       <div class="media-container">
       </div>
