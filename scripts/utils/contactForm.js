@@ -19,8 +19,8 @@ function closeModal() {
 
 
     //Affichage des données saisies à la console
-    dataInput.forEach((oui) => {
-        console.log(oui.value);
+    dataInput.forEach((data) => {
+        console.log(data.value);
     });
 }
 

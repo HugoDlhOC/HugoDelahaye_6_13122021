@@ -14,6 +14,7 @@ export class Media{
     HTMLForAllMedia(){
         const article = document.createElement("article");
         const divMedia = document.createElement("div");
+        //const linkMedia = document.createElement("a");
         const divDescriptionMedia = document.createElement("div");
         const titleOfMedia = document.createElement("p");
         const numberOfLikes = document.createElement("span");
@@ -53,16 +54,19 @@ export class Media{
     }
 }
 
-
-
 export class Image extends Media{
     constructDOM(){
         const image = document.createElement("img");
-        const titleOfMedia = document.querySelector(".title_media");
+        const linkMedia = document.createElement("a");
+        //Link media est une balise a qui aura en attribut href la source de notre media, utilisé pour la lightbox en javascript
+        linkMedia.appendChild(image);
+        linkMedia.setAttribute("class", "link_media");
+        linkMedia.setAttribute("href", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`);
         image.setAttribute("src", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`);
         image.setAttribute("alt", `${this.data.title}`);
+        image.setAttribute("class", "media_image");
         
-        return (image);
+        return (linkMedia);
     }
 
 }
@@ -70,13 +74,15 @@ export class Image extends Media{
 export class Video extends Media{
     constructDOM(){
         const video = document.createElement("video");
+        const linkMedia = document.createElement("a");
         const sourceVideo = document.createElement("source");
-        const titleOfMedia = document.querySelectorAll(".title_media");
-        const numberOfLikes = document.querySelectorAll(".number_of_likes");
         video.setAttribute("autoplay", "true");
+        linkMedia.appendChild(video);
+        linkMedia.setAttribute("class", "link_media");
+        linkMedia.setAttribute("href", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.video}`);
         sourceVideo.setAttribute("type", "video/mp4");
         sourceVideo.setAttribute("src", `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`);
         video.appendChild(sourceVideo);
-        return (video);
+        return (linkMedia);
     }
 }

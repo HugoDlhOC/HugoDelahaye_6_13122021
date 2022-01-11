@@ -2,6 +2,7 @@ import { Media } from "../class/Media.js";
 import { Image } from "../class/Media.js";
 import { Video } from "../class/Media.js";
 import { Photographer } from "../class/Photographer.js";
+import { Lightbox } from "../class/Lightbox.js";
 import { getPhotographers } from "../pages/index.js";
 
 /*
@@ -174,16 +175,13 @@ const fixedContainer = document.querySelector(".fixed_container");
 fixedContainer.appendChild(DOMCard);
 
 
+//Lightbox
+const linksMedias = document.querySelectorAll("a");
+Lightbox.init(linksMedias);
 
+const altMedias = document.querySelectorAll(".media_image");
 
-
-
-
-
-
-
-
-
+console.log(linksMedias[3].children[0].alt);
 
 
 /*

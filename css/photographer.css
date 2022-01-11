@@ -275,3 +275,61 @@ form input {
 form #input_message{
     padding-bottom: 70px;
 }
+
+.lightbox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.90;
+    z-index: 1;
+}
+
+.lightbox_next{
+    background:url(../assets/icons/next.svg) center center / 20px 40px no-repeat;
+    right: 0;
+}
+
+.lightbox_before{
+    background: url(../assets/icons/before.svg) center center / 20px 40px no-repeat;
+    right: auto;
+    left: 0;
+}
+
+.lightbox_before, .lightbox_next{
+    width: 50px;
+    height: 100%;
+    border: none;
+    position: fixed;
+    top: 0;
+    margin-top: -20px;  /*Moitié de la hauteur*/
+    z-index: 2;
+    cursor: pointer;
+}
+
+.lightbox_close{
+    border: none;
+    width: 15px;
+    height: 15px;
+    background: url(../assets/icons/closeLightbox.svg) center center / 15px 15px no-repeat;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.lightbox .container_image{
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;  /*Centrer image*/
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /*L'image est bien au milieu de l'écran*/
+}
+
+.lightbox .container_image img{
+    max-width: 100%;    /*L'image n'empiète pas sur les flèches*/
+    height: auto;
+}
