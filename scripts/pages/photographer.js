@@ -176,12 +176,9 @@ fixedContainer.appendChild(DOMCard);
 
 
 //Lightbox
-const linksMedias = document.querySelectorAll("a");
+const linksMedias = Array.from(document.querySelectorAll("a"));
 Lightbox.init(linksMedias);
 
-const altMedias = document.querySelectorAll(".media_image");
-
-console.log(linksMedias[3].children[0].alt);
 
 
 /*

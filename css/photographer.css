@@ -282,8 +282,7 @@ form #input_message{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
-    opacity: 0.90;
+    background-color: white;
     z-index: 1;
 }
 
@@ -304,7 +303,7 @@ form #input_message{
     border: none;
     position: fixed;
     top: 0;
-    margin-top: -20px;  /*Moitié de la hauteur*/
+    margin-top: 50px;  /*Moitié de la hauteur*/
     z-index: 2;
     cursor: pointer;
 }
@@ -327,9 +326,21 @@ form #input_message{
     justify-content: center;
     align-items: center;
     min-height: 100vh;  /*L'image est bien au milieu de l'écran*/
+    flex-direction: column;
+}
+
+.lightbox .title_media_lightbox{
+    font-size: 24px;
+    color : #901C1C;
 }
 
 .lightbox .container_image img{
-    max-width: 100%;    /*L'image n'empiète pas sur les flèches*/
+    max-width: 40%;    /*L'image n'empiète pas sur les flèches*/
     height: auto;
+}
+
+.loader_lightbox{
+    width: 40px;
+    height: 40px;
+    background: url(../assets/icons/loader_lightbox.svg) center center no-repeat;
 }
