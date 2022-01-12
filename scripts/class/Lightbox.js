@@ -80,5 +80,4 @@ export class Lightbox{
         return DOMLightbox;
     }
 
-    //Fonction pour fermer la lightbox avec un event Mouse
 }

@@ -36,6 +36,46 @@ function totalNumberOfLikes(data) {
         return result;
 }
 
+//Fonction qui affiche les medias du photographe
+function displayDataPhotographerMedia(medias){
+    mediasSection.innerHTML = "";   //Reset contenu
+    medias.forEach((media) => {
+        const userCardDOM = media.HTMLForAllMedia();
+        mediasSection.appendChild(userCardDOM);
+    });
+}
+
+//Fonction qui trie les médias par date
+function sortMediasByDate(medias) {
+    return medias.sort(function(mediaA, mediaB){
+        if(mediaA.date < mediaB.date){
+            return -1;
+        }
+        if(mediaA.date > mediaB.date){
+            return 1;
+        }
+    });
+}
+
+//Fonction qui trie les médias par popularité -> avec nombre de likes
+function sortMediasByPopularity(medias) {   //LIKES
+    return medias.sort(function(mediaA, mediaB){
+        return mediaA.likes - mediaB.likes;
+    });
+}
+
+//Fonction qui trie les médias par titre, ordre alphabétique
+function sortMediasByTitle(medias) {
+    return medias.sort(function(mediaA, mediaB){
+        if(mediaA.title < mediaB.title){
+            return -1;
+        }
+        if(mediaA.title > mediaB.title){
+            return 1;
+        }
+    });
+}
+
 //Récupération de l'id du photographe transmis dans l'url
 let url = new URLSearchParams(window.location.search);
 let IdPhotograph = url.get('id');
@@ -54,13 +94,7 @@ displayDataPhotographerInfos(photographer);
 
 //Partie medias 
 const mediasSection = document.querySelector(".media-container");
-function displayDataPhotographerMedia(medias){
-    mediasSection.innerHTML = "";   //Reset contenu
-    medias.forEach((media) => {
-        const userCardDOM = media.HTMLForAllMedia();
-        mediasSection.appendChild(userCardDOM);
-    });
-}
+
 //Affichage des medias du photographe
 displayDataPhotographerMedia(photographer.medias);
 
@@ -94,12 +128,6 @@ filterLinks.forEach((filterLink) => {
 menuIconUp.addEventListener("click", (e) => {
     sortMenuOpenDiv.style.display="none";
 });
-/*
-<div>
-<a class="filter" data-filter-type="date" href="">Date</a>
-<a class="filter" data-filter-type="popularity" href="">Popularité</a>
-</div>
-*/
 
 
 // Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
@@ -129,73 +157,30 @@ Array.from(filterLinks).forEach((filter) => {
         displayDataPhotographerMedia(sortedMedias);
     })
 })
-console.log(photographer);
-console.log(photographer.medias[0].likes);
-
-let tabMedias = photographer.medias;
-
-console.log(tabMedias);
-
-function sortMediasByDate(medias) {
-    return medias.sort(function(mediaA, mediaB){
-        if(mediaA.date < mediaB.date){
-            return -1;
-        }
-        if(mediaA.date > mediaB.date){
-            return 1;
-        }
-    });
-}
-
-function sortMediasByPopularity(medias) {   //LIKES
-    return medias.sort(function(mediaA, mediaB){
-        return mediaA.likes - mediaB.likes;
-    });
-}
-function sortMediasByTitle(medias) {
-    return medias.sort(function(mediaA, mediaB){
-        if(mediaA.title < mediaB.title){
-            return -1;
-        }
-        if(mediaA.title > mediaB.title){
-            return 1;
-        }
-    });
-}
 
 //div nombre total likes + tarif photographe (fixedContainer)
 //Nombre total de likes
 const totalNbLikes = totalNumberOfLikes(photographer.medias);
-console.log(totalNbLikes);
-
-
 let objMedia = new Media(photographer.medias);
 const DOMCard = objMedia.HTMLForFixedContainer(totalNbLikes, photographer.price);
 const fixedContainer = document.querySelector(".fixed_container");
 fixedContainer.appendChild(DOMCard);
 
+//L'utilisateur peut aimer un media
+const hearts = document.querySelectorAll(".description_media > .fa-heart");
+hearts.forEach(heart => {
+    heart.addEventListener("click", likes =>{
+        console.log(heart.previousElementSibling);
+        let valueLike = parseInt(heart.previousElementSibling.innerHTML);
+        valueLike++;
+        heart.previousElementSibling.innerHTML = valueLike.toString();
+    });
+});
+
 
 //Lightbox
-const linksMedias = Array.from(document.querySelectorAll("a"));
+let linksMedias = Array.from(document.querySelectorAll(".media > a"));
 Lightbox.init(linksMedias);
 
 
-
-/*
-//Évènement sur le menu de tri pour voir quand tel élément est sélectionné
-const selectedMenu = document.getElementById("menu");
-
-selectedMenu.addEventListener("change", (e) =>{
-        const selectedMenuValue = selectedMenu.value;
-        console.log(selectedMenuValue);
-});
-
-//Récupération des likes des différents médias du photographe actuel
-//Images*/
-
-
-/*
-let objMedia = new Media(allDataMediaPhtgs);
-let nbrLikes = totalNumberOfLikes(allDataMediaPhtgs);
-objMedia.HTMLForFixedContainer(nbrLikes, )*/
 

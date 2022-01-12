@@ -40,29 +40,29 @@
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
+			<div class="modal" aria-hidden="true" role="dialog" aria-describedby="Formulaire">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h1 role="heading">Contactez-moi</h1>
+          <img role="button" src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input id="input_first_name"/>
+						<label role="label">Prénom</label>
+						<input role="text field" id="input_first_name"/>
 					</div>
           <div>
-						<label>Nom</label>
-						<input id="input_last_name"/>
+						<label role="label">Nom</label>
+						<input role="text field" id="input_last_name"/>
 					</div>
           <div>
-						<label>Email</label>
-						<input id="input_mail"/>
+						<label role="label">Email</label>
+						<input role="text field" id="input_mail"/>
 					</div>
           <div>
-						<label>Votre message</label>
-						<input id="input_message"/>
+						<label role="label">Votre message</label>
+						<input role="text field" id="input_message"/>
 					</div>
-          <button id="send_form" class="contact_button">Envoyer</button>
+          <button role="button" id="send_form" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
