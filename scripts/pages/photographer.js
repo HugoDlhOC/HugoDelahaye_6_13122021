@@ -19,21 +19,21 @@ function displayDataPhotographerInfos(photographer) {
 //Calculer l'ensemble des likes des photographes
 //Retourne le nombre total de likes
 function totalNumberOfLikes(data) {
-        const lengthData = data.length;
-        let arrayOfLikes = [ length ];
-        let result = 0;
+    const lengthData = data.length;
+    let arrayOfLikes = [ length ];
+    let totalNumberOfLikes = 0;
 
-        //Rangement de tous les likes dans un tableau
-        for (let i = 0; i < lengthData; i++) {
-                arrayOfLikes[ i ] = parseInt(data[ i ].likes);
-        }
+    //Rangement de tous les likes dans un tableau
+    for (let i = 0; i < lengthData; i++) {
+            arrayOfLikes[ i ] = data[ i ].likes;
+    }
 
-        //Calcul de tous les likes
-        for (let j = 0; j < arrayOfLikes.length; j++) {
-                result = result + arrayOfLikes[ j ];
-        }
-        result = String(result);
-        return result;
+    //Calcul de tous les likes
+    for (let j = 0; j < arrayOfLikes.length; j++) {
+            totalNumberOfLikes = totalNumberOfLikes + arrayOfLikes[ j ];
+    }
+    
+    return totalNumberOfLikes;
 }
 
 //Fonction qui affiche les medias du photographe

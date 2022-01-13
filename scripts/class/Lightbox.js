@@ -4,6 +4,7 @@ export class Lightbox{
         linksMedias.forEach(linkMedia => {
             linkMedia.addEventListener("click", e => {
                 e.preventDefault(); /*Empeche le comportement par defaut*/
+                debugger
                 new Lightbox(e.currentTarget.getAttribute("href"), e.path[0].alt, gallery);
             }
         )})
