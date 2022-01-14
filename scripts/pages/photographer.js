@@ -3,7 +3,7 @@ import { Image } from "../class/Media.js";
 import { Video } from "../class/Media.js";
 import { Photographer } from "../class/Photographer.js";
 import { Lightbox } from "../class/Lightbox.js";
-import { getPhotographers } from "../pages/index.js";
+import { getPhotographers, init } from "../pages/index.js";
 
 /*
 @todo déplacer toutes les fonctions en haut
@@ -179,8 +179,8 @@ hearts.forEach(heart => {
 
 
 //Lightbox
-let linksMedias = Array.from(document.querySelectorAll(".media > a"));
+const linksMedias = Array.from(document.querySelectorAll(".media > a"));
 Lightbox.init(linksMedias);
-
-
-
+//const test = new Lightbox();
+//let recupInit = test.init(linksMedias);
+//console.log(recupInit);

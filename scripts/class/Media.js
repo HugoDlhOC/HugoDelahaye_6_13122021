@@ -64,6 +64,7 @@ export class Image extends Media{
         linkMedia.setAttribute("href", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`);
         image.setAttribute("src", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`);
         image.setAttribute("alt", `${this.data.title}`);
+        image.setAttribute("id", this.data.id);
         image.setAttribute("class", "media_image");
         
         return (linkMedia);
@@ -77,6 +78,8 @@ export class Video extends Media{
         const linkMedia = document.createElement("a");
         const sourceVideo = document.createElement("source");
         video.setAttribute("autoplay", "true");
+        video.setAttribute("id", this.data.id);
+        video.setAttribute("controls", "controls");
         linkMedia.appendChild(video);
         linkMedia.setAttribute("class", "link_media");
         linkMedia.setAttribute("href", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.video}`);

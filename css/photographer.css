@@ -84,7 +84,7 @@
     margin-left: 50px;
 }
 
-.media img ,video{
+.media img ,.media video{
     height: 400px;
     width: 400px;
     object-fit: cover;
@@ -277,7 +277,7 @@ form #input_message{
     padding-bottom: 70px;
 }
 
-.lightbox{
+.lightbox_container{
     position: fixed;
     top: 0;
     left: 0;
@@ -285,6 +285,7 @@ form #input_message{
     height: 100%;
     background-color: white;
     z-index: 1;
+    display: none;
 }
 
 .lightbox_next{
@@ -320,7 +321,7 @@ form #input_message{
     right: 20px;
 }
 
-.lightbox .container_image{
+.lightbox_container .container_media{
     margin-left: 50px;
     margin-right: 50px;
     display: flex;  /*Centrer image*/
@@ -330,14 +331,19 @@ form #input_message{
     flex-direction: column;
 }
 
-.lightbox .title_media_lightbox{
+.lightbox_container .title_media_lightbox{
     font-size: 24px;
     color : #901C1C;
 }
 
-.lightbox .container_image img{
+.lightbox_container .container_media img{
     max-width: 40%;    /*L'image n'empiète pas sur les flèches*/
     height: auto;
+    display: none;
+}
+
+.lightbox_container .container_media video{
+    display: none;
 }
 
 .loader_lightbox{
