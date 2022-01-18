@@ -337,7 +337,7 @@ form #input_message{
 }
 
 .lightbox_container .container_media img{
-    max-width: 40%;    /*L'image n'empiète pas sur les flèches*/
+    max-width: 25%;    /*L'image n'empiète pas sur les flèches*/
     height: auto;
     display: none;
 }

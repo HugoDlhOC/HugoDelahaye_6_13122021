@@ -91,6 +91,23 @@ function configLightbox(){
         }
     });
 }
+function likesByUsers(){
+    let valueTotalLikes = document.querySelector("#total_likes_photographer");
+    hearts = document.querySelectorAll(".description_media > .fa-heart");
+    console.log(valueTotalLikes);
+    hearts.forEach(heart => {
+        heart.addEventListener("click", handleFunctionLikes);
+        function handleFunctionLikes(){
+            console.log(heart.previousElementSibling);
+            let valueLike = parseInt(heart.previousElementSibling.innerHTML);
+            valueLike++;
+            valueTotalLikes.innerHTML++;
+            heart.previousElementSibling.innerHTML = valueLike.toString();
+            console.log(valueTotalLikes);
+            heart.removeEventListener("click", handleFunctionLikes);
+        }
+    });
+}
 
 //Récupération de l'id du photographe transmis dans l'url
 let url = new URLSearchParams(window.location.search);
@@ -148,43 +165,7 @@ menuIconUp.addEventListener("click", (e) => {
 let linksMedias = undefined;
 configLightbox();
 
-// Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
-Array.from(filterLinks).forEach((filter) => {
-    // pour chaque filtre, on ajoute un listener au click
-    filter.addEventListener("click", (event) => {
-        // on récupère le type de filtre
-        const type = event.target.getAttribute('data-filter-type');
-        let sortedMedias;
-        // on applique la fonction adaptée au type de filtre sélectionné
-        if(type === "date") {
-            // lancer une fonction qui va trier ton tableau medias (photographer.medias) en fonction du type de filtre sélectionné PAR SATE
-            sortedMedias = sortMediasByDate(photographer.medias);
-            buttonOpenMenu.innerHTML="Date";
-            photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-            console.log(photographer.medias);
-        }
-        else if(type === "popularity") {
-            sortedMedias = sortMediasByPopularity(photographer.medias);
-            buttonOpenMenu.innerHTML="Popularité";
-            photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-            console.log(photographer.medias);
-        }
-        else if(type === "title"){
-            sortedMedias = sortMediasByTitle(photographer.medias);
-            buttonOpenMenu.innerHTML="Titre";
-            photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-            console.log(photographer.medias);
-        }
-        // une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
-        // d'abord, on efface le contenu de mediasSection
-        // puis on reconstruit l'html pour chaque media trié :
-        displayDataPhotographerMedia(sortedMedias);
-
-        //Lightbox
-        configLightbox();
-    })
-})
-
+//L'utilisateur peut aimer un media
 //div nombre total likes + tarif photographe (fixedContainer)
 //Nombre total de likes
 const totalNbLikes = totalNumberOfLikes(photographer.medias);
@@ -193,14 +174,57 @@ const DOMCard = objMedia.HTMLForFixedContainer(totalNbLikes, photographer.price)
 const fixedContainer = document.querySelector(".fixed_container");
 fixedContainer.appendChild(DOMCard);
 
-//L'utilisateur peut aimer un media
-const hearts = document.querySelectorAll(".description_media > .fa-heart");
-hearts.forEach(heart => {
-    heart.addEventListener("click", likes =>{
-        console.log(heart.previousElementSibling);
-        let valueLike = parseInt(heart.previousElementSibling.innerHTML);
-        valueLike++;
-        heart.previousElementSibling.innerHTML = valueLike.toString();
-    });
+let hearts = undefined;
+likesByUsers();
+
+
+// Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
+Array.from(filterLinks).forEach((filter) => {
+    // pour chaque filtre, on ajoute un listener au click
+    filter.addEventListener("click", handleFunctionFilterEvent);
+        // on récupère le type de filtre
+        function handleFunctionFilterEvent(event){
+            const type = event.target.getAttribute('data-filter-type');
+            let sortedMedias;
+            // on applique la fonction adaptée au type de filtre sélectionné
+            if(type === "date") {
+                // lancer une fonction qui va trier ton tableau medias (photographer.medias) en fonction du type de filtre sélectionné PAR SATE
+                sortedMedias = sortMediasByDate(photographer.medias);
+                buttonOpenMenu.innerHTML="Date";
+                photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+                console.log(photographer.medias);
+            }
+            else if(type === "popularity") {
+                sortedMedias = sortMediasByPopularity(photographer.medias);
+                buttonOpenMenu.innerHTML="Popularité";
+                photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+                console.log(photographer.medias);
+            }
+            else if(type === "title"){
+                sortedMedias = sortMediasByTitle(photographer.medias);
+                buttonOpenMenu.innerHTML="Titre";
+                photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+                console.log(photographer.medias);
+            }
+            // une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
+            // d'abord, on efface le contenu de mediasSection
+            // puis on reconstruit l'html pour chaque media trié :
+            displayDataPhotographerMedia(sortedMedias);
+
+            //Lightbox
+            configLightbox();
+
+            //Likes de l'utilisateur 
+            let valueTotalLikes = document.querySelector("#total_likes_photographer");
+            valueTotalLikes.innerHTML = totalNbLikes;
+            likesByUsers();
+        }
 });
+
+
+
+
+
+
+
 
