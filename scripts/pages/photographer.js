@@ -76,6 +76,22 @@ function sortMediasByTitle(medias) {
     });
 }
 
+//Lightbox
+function configLightbox(){
+    linksMedias = Array.from(document.querySelectorAll(".media > a"));
+    linksMedias.forEach(media => {
+        media.removeEventListener("click", handleFunction);
+        media.addEventListener("click", handleFunction);
+            
+        function handleFunction(e){
+            e.preventDefault();
+            Lightbox.openLightbox();
+            Lightbox.closeLightbox();
+            Lightbox.displayMediasLightbox(Array.from(photographer.medias), media.children[0].id, IdPhotograph);
+        }
+    });
+}
+
 //Récupération de l'id du photographe transmis dans l'url
 let url = new URLSearchParams(window.location.search);
 let IdPhotograph = url.get('id');
@@ -128,6 +144,10 @@ filterLinks.forEach((filterLink) => {
 menuIconUp.addEventListener("click", (e) => {
     sortMenuOpenDiv.style.display="none";
 });
+//Lightbox
+let linksMedias = undefined;
+configLightbox();
+
 // Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
 Array.from(filterLinks).forEach((filter) => {
     // pour chaque filtre, on ajoute un listener au click
@@ -159,6 +179,9 @@ Array.from(filterLinks).forEach((filter) => {
         // d'abord, on efface le contenu de mediasSection
         // puis on reconstruit l'html pour chaque media trié :
         displayDataPhotographerMedia(sortedMedias);
+
+        //Lightbox
+        configLightbox();
     })
 })
 
@@ -181,16 +204,3 @@ hearts.forEach(heart => {
     });
 });
 
-
-//Lightbox
-let linksMedias = Array.from(document.querySelectorAll(".media > a"));
-linksMedias.forEach(media => {
-    media.addEventListener("click", handleFunction);
-        
-    function handleFunction(e){
-        e.preventDefault();
-        Lightbox.openLightbox();
-        Lightbox.closeLightbox();
-        Lightbox.displayMediasLightbox(Array.from(photographer.medias), media.children[0].id, IdPhotograph);
-    }
-});

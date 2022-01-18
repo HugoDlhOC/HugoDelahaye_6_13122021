@@ -13,6 +13,14 @@ export class Lightbox{
             e.preventDefault();
             lightbox.style.display="none";
         }
+
+        document.addEventListener("keydown", handleFunctionEscapeKey);
+        function handleFunctionEscapeKey(e){
+            if(e.key === "Escape"){
+                e.preventDefault();
+                lightbox.style.display="none";
+            }
+        }
     }
 
     static displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer){
@@ -83,6 +91,13 @@ export class Lightbox{
             
         }
 
+        document.addEventListener("keydown", handleFunctionNextKey);
+        function handleFunctionNextKey(e){
+            if(e.keyCode === 39){
+                handleFunctionNext();
+            }
+        }
+    
         const beforeButtonLightbox = document.querySelector(".lightbox_before");
 
         beforeButtonLightbox.addEventListener("click", handleFunctionBefore);
@@ -99,6 +114,13 @@ export class Lightbox{
                 displayVideoOrImage(indexOfCurrentMedia);
             }
             
+        }
+
+        document.addEventListener("keydown", handleFunctionBeforeKey);
+        function handleFunctionBeforeKey(e){
+            if(e.keyCode === 37){
+                handleFunctionBefore();
+            }
         }
     }
 }        
