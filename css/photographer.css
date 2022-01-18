@@ -276,7 +276,7 @@ form input {
 form #input_message{
     padding-bottom: 70px;
 }
-
+/*Lightbox*/
 .lightbox_container{
     position: fixed;
     top: 0;
@@ -344,6 +344,7 @@ form #input_message{
 
 .lightbox_container .container_media video{
     display: none;
+    width: 50%;
 }
 
 .loader_lightbox{

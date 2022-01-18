@@ -1,85 +1,105 @@
 export class Lightbox{
 
-    static init(linksMedias){
-        const lightboxContainer = document.querySelector(".lightbox_container");
-        const imageLightbox = document.querySelector(".container_media img");
-        const videoLightbox = document.querySelector(".container_media video");
-        const sourceVideoLightbox = document.querySelector(".container_media source");
-        const titleMediaLightbox = document.querySelector(".title_media_lightbox");
-
-        let codeHtml = null;
-        linksMedias.forEach(media => {
-            media.addEventListener("click", handleEvent);
-            function handleEvent(e){
-                e.preventDefault();
-                console.log("click");
-                lightboxContainer.style.display = "block";
-                console.log(media.children[0].nodeName);
-                console.log(media.children);
-                console.log(media.children[0].alt);
-                console.log(media.children[0].attributes[0].value);
-                //console.log(media.children[0].children[0].attributes[1].value);
-                console.log(codeHtml);
-                console.log(linksMedias);
-                //console.log(media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.attributes[0].value);
-                //console.log(media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.attributes[1].value);
-                //console.log(media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.firstChild.attributes[1].value);
-                //Determiner si c'est une image ou vidéo
-                if(media.children[0].nodeName === "IMG"){
-                    console.log("oui");
-                    imageLightbox.style.display = "block";
-                    imageLightbox.setAttribute("src", media.children[0].attributes[0].value);
-                    titleMediaLightbox.innerHTML = media.children[0].alt;
-                }
-                else if(media.children[0].nodeName === "VIDEO"){
-                    videoLightbox.style.display = "block";
-                    sourceVideoLightbox.setAttribute("src", media.children[0].children[0].attributes[1].value);
-                }
-                Lightbox.nextLightboxEvent(media);
-            };
-        });
-        Lightbox.closeLightboxEvent();
-    } 
-
-    static closeLightboxEvent(){
-        const lightboxContainer = document.querySelector(".lightbox_container");
-        const closeLightbox = document.querySelector(".lightbox_close");
-        const imageLightbox = document.querySelector(".container_media img");
-        const videoLightbox = document.querySelector(".container_media video");
-        console.log(closeLightbox);
-        closeLightbox.addEventListener("click", e => {
-            e.preventDefault();
-            lightboxContainer.style.display = "none";
-            imageLightbox.style.display = "none";
-            videoLightbox.style.display = "none";
-        });
+    static openLightbox(){
+        const lightbox = document.querySelector(".lightbox_container");
+        lightbox.style.display="block";
     }
 
-    static nextLightboxEvent(media){
-        let i = 0;
-        const closeLightbox = document.querySelector(".lightbox_next");
-        const imageLightbox = document.querySelector(".container_media img");
-        const videoLightbox = document.querySelector(".container_media video");
-        const sourceVideoLightbox = document.querySelector(".container_media source");
-        const titleMediaLightbox = document.querySelector(".title_media_lightbox");
-        closeLightbox.addEventListener("click", handleEvent);
-
-        function handleEvent(){
-            alert("next");
-            if(media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.nodeName === "IMG"){
-                alert("C'est une image");
-                imageLightbox.style.display = "block";
-                imageLightbox.setAttribute("src", media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.attributes[0].value);
-                titleMediaLightbox.innerHTML = media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.attributes[1].value;
-            }
-            else if(media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.nodeName === "VIDEO"){
-                alert("C'est une video");
-                sourceVideoLightbox.setAttribute("src", media.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.firstChild.attributes[1].value);
-                videoLightbox.style.display = "block";
-            }
-
-            closeLightbox.removeEventListener("click", handleEvent);
+    static closeLightbox(){
+        const lightbox = document.querySelector(".lightbox_container");
+        const lightboxClose = document.querySelector(".lightbox_close");
+        lightboxClose.addEventListener("click", handleFunction);
+        function handleFunction(e){
+            e.preventDefault();
+            lightbox.style.display="none";
         }
     }
-}
+
+    static displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer){
+        //le but de cette méthode est d'afficher les images/vidéos du photographe : toutes les données nécessaires sont dans dataMedias
+        console.log(idCurrentMedia);
+        console.log(dataMedias);
+        console.log(dataMedias.length);
+        let idMedias = [];
+        dataMedias.forEach(idMedia => {
+            idMedias.push(idMedia.id);
+        });
+        console.log(String(idMedias[0]));
+
+        //rechercher l'index du média cliqué dans le tableau dataMedias grace a idCurrentMedia
+        const conditionFindIndex = (element) => String(element) === idCurrentMedia;
+        let indexOfCurrentMedia = idMedias.findIndex(conditionFindIndex);
+        console.log(indexOfCurrentMedia);
+
+        //afficher la bonne image/video et le bon titre grace a l'index (bien déterminer si c'est une video ou une image)
+        const imageLightbox = document.querySelector(".container_media img");
+        const videoLightbox = document.querySelector(".container_media video");
+        const titleLightbox = document.querySelector(".title_media_lightbox");
+        let typeOfMedia = undefined;
+        displayVideoOrImage(indexOfCurrentMedia);
+        function displayVideoOrImage(indexOfCurrentMedia){
+            //console.log(dataMedias[indexOfCurrentMedia].data);
+
+            titleLightbox.innerHTML = dataMedias[indexOfCurrentMedia].data.title;
+
+            if(dataMedias[indexOfCurrentMedia].image === undefined){
+                console.log("c'est une vidéo");
+                typeOfMedia = "video";
+            }
+            else if(dataMedias[indexOfCurrentMedia].video === undefined){
+                console.log("c'est une image");
+                typeOfMedia = "image";
+            }
+            else{
+                console.log("aucun fichier trouvé");
+            }
+
+            if(typeOfMedia === "image"){
+                imageLightbox.style.display = "block";
+                videoLightbox.style.display = "none";
+                imageLightbox.setAttribute("src", `assets/photographers/medias/images/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.image}`);
+            }
+            else if(typeOfMedia === "video"){
+                videoLightbox.style.display = "block";
+                imageLightbox.style.display = "none";
+                videoLightbox.setAttribute("src", `assets/photographers/medias/videos/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.video}`);
+            }
+        }
+        const nextButtonLightbox = document.querySelector(".lightbox_next");
+
+        nextButtonLightbox.addEventListener("click", handleFunctionNext);
+
+        function handleFunctionNext(){
+            if(indexOfCurrentMedia === dataMedias.length - 1){
+                indexOfCurrentMedia = 0;
+                console.log(indexOfCurrentMedia);
+                displayVideoOrImage(indexOfCurrentMedia);
+            }
+            else{
+                indexOfCurrentMedia++;
+                console.log(indexOfCurrentMedia);
+                displayVideoOrImage(indexOfCurrentMedia);
+            }
+            
+        }
+
+        const beforeButtonLightbox = document.querySelector(".lightbox_before");
+
+        beforeButtonLightbox.addEventListener("click", handleFunctionBefore);
+
+        function handleFunctionBefore(){
+            if(indexOfCurrentMedia === 0){
+                indexOfCurrentMedia = dataMedias.length - 1;
+                console.log(indexOfCurrentMedia);
+                displayVideoOrImage(indexOfCurrentMedia);
+            }
+            else{
+                indexOfCurrentMedia--;
+                console.log(indexOfCurrentMedia);
+                displayVideoOrImage(indexOfCurrentMedia);
+            }
+            
+        }
+    }
+}        
 

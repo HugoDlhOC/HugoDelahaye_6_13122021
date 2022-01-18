@@ -85,7 +85,7 @@ IdPhotograph = parseInt(IdPhotograph);
 let photographers = await getPhotographers();
 
 const photographersSection = document.querySelector(".photograph-header");
-const photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+let photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
 //console.log(photographer.medias[0].title);
 
 
@@ -128,8 +128,6 @@ filterLinks.forEach((filterLink) => {
 menuIconUp.addEventListener("click", (e) => {
     sortMenuOpenDiv.style.display="none";
 });
-
-
 // Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
 Array.from(filterLinks).forEach((filter) => {
     // pour chaque filtre, on ajoute un listener au click
@@ -142,14 +140,20 @@ Array.from(filterLinks).forEach((filter) => {
             // lancer une fonction qui va trier ton tableau medias (photographer.medias) en fonction du type de filtre sélectionné PAR SATE
             sortedMedias = sortMediasByDate(photographer.medias);
             buttonOpenMenu.innerHTML="Date";
+            photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+            console.log(photographer.medias);
         }
         else if(type === "popularity") {
             sortedMedias = sortMediasByPopularity(photographer.medias);
             buttonOpenMenu.innerHTML="Popularité";
+            photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+            console.log(photographer.medias);
         }
         else if(type === "title"){
             sortedMedias = sortMediasByTitle(photographer.medias);
             buttonOpenMenu.innerHTML="Titre";
+            photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+            console.log(photographer.medias);
         }
         // une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
         // d'abord, on efface le contenu de mediasSection
@@ -179,8 +183,14 @@ hearts.forEach(heart => {
 
 
 //Lightbox
-const linksMedias = Array.from(document.querySelectorAll(".media > a"));
-Lightbox.init(linksMedias);
-//const test = new Lightbox();
-//let recupInit = test.init(linksMedias);
-//console.log(recupInit);
+let linksMedias = Array.from(document.querySelectorAll(".media > a"));
+linksMedias.forEach(media => {
+    media.addEventListener("click", handleFunction);
+        
+    function handleFunction(e){
+        e.preventDefault();
+        Lightbox.openLightbox();
+        Lightbox.closeLightbox();
+        Lightbox.displayMediasLightbox(Array.from(photographer.medias), media.children[0].id, IdPhotograph);
+    }
+});

@@ -76,16 +76,13 @@ export class Video extends Media{
     constructDOM(){
         const video = document.createElement("video");
         const linkMedia = document.createElement("a");
-        const sourceVideo = document.createElement("source");
         video.setAttribute("autoplay", "true");
         video.setAttribute("id", this.data.id);
         video.setAttribute("controls", "controls");
         linkMedia.appendChild(video);
         linkMedia.setAttribute("class", "link_media");
-        linkMedia.setAttribute("href", `assets/photographers/medias/images/${this.data.photographerId}/${this.data.video}`);
-        sourceVideo.setAttribute("type", "video/mp4");
-        sourceVideo.setAttribute("src", `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`);
-        video.appendChild(sourceVideo);
+        linkMedia.setAttribute("href", `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`);
+        video.setAttribute("src", `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`);
         return (linkMedia);
     }
 }
