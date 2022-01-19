@@ -1,31 +1,29 @@
 import { Media } from "../class/Media.js";
-import { Image } from "../class/Media.js";
-import { Video } from "../class/Media.js";
-import { Photographer } from "../class/Photographer.js";
 import { Lightbox } from "../class/Lightbox.js";
 import { getPhotographers, init } from "../pages/index.js";
 
-/*
-@todo déplacer toutes les fonctions en haut
-@todo nommage des variables et fonctions : toujours utiliser du camelCase (ex : IdPhotographer => idPhotographer)
- */
-
-//Afficher les données récupérées en HTML
+/**
+* Afficher données des photographes (hors medias)
+* @param { any } photographer
+*/
 function displayDataPhotographerInfos(photographer) {
         const userCardDOM = photographer.HTMLForActualPhotographer();
         photographersSection.appendChild(userCardDOM);
 }
 
-//Calculer l'ensemble des likes des photographes
-//Retourne le nombre total de likes
-function totalNumberOfLikes(data) {
-    const lengthData = data.length;
+/**
+* Calculer le nombre total de likes du photographe actuel, retourne la valeur calculée
+* @param { any } medias
+* @return { number }
+*/
+function totalNumberOfLikes(medias) {
+    const lengthMedias = medias.length;
     let arrayOfLikes = [ length ];
     let totalNumberOfLikes = 0;
 
     //Rangement de tous les likes dans un tableau
-    for (let i = 0; i < lengthData; i++) {
-            arrayOfLikes[ i ] = data[ i ].likes;
+    for (let i = 0; i < lengthMedias; i++) {
+            arrayOfLikes[ i ] = medias[ i ].likes;
     }
 
     //Calcul de tous les likes
@@ -36,7 +34,10 @@ function totalNumberOfLikes(data) {
     return totalNumberOfLikes;
 }
 
-//Fonction qui affiche les medias du photographe
+/**
+* Affiche les images/vidéos du photographe actuel
+* @param { any } medias
+*/
 function displayDataPhotographerMedia(medias){
     mediasSection.innerHTML = "";   //Reset contenu
     medias.forEach((media) => {
@@ -45,7 +46,11 @@ function displayDataPhotographerMedia(medias){
     });
 }
 
-//Fonction qui trie les médias par date
+/**
+* Fonction qui tri les médias par date, utilisation de la méthode sort()
+* @param { any } medias
+* @return { number }
+*/
 function sortMediasByDate(medias) {
     return medias.sort(function(mediaA, mediaB){
         if(mediaA.date < mediaB.date){
@@ -57,14 +62,22 @@ function sortMediasByDate(medias) {
     });
 }
 
-//Fonction qui trie les médias par popularité -> avec nombre de likes
+/**
+* Fonction qui tri les médias par popularité (nombre de likes) utilisation de la méthode sort()
+* @param { any } medias
+* @return { number }
+*/
 function sortMediasByPopularity(medias) {   //LIKES
     return medias.sort(function(mediaA, mediaB){
         return mediaA.likes - mediaB.likes;
     });
 }
 
-//Fonction qui trie les médias par titre, ordre alphabétique
+/**
+* Fonction qui tri les médias par titre (ordre alphabétique), utilisation de la méthode sort()
+* @param { any } medias
+* @return { number }
+*/
 function sortMediasByTitle(medias) {
     return medias.sort(function(mediaA, mediaB){
         if(mediaA.title < mediaB.title){
@@ -76,13 +89,20 @@ function sortMediasByTitle(medias) {
     });
 }
 
-//Lightbox
+/**
+* Fonction qui gère l'affichage de la lightbox en créant un évènement click sur toutes les balises a, utilisation des méthodes de la classe Lightbox
+
+*/
 function configLightbox(){
     linksMedias = Array.from(document.querySelectorAll(".media > a"));
     linksMedias.forEach(media => {
         media.removeEventListener("click", handleFunction);
         media.addEventListener("click", handleFunction);
-            
+        
+        /**
+        * Fonction pour l'évènement click, qui gère le comportement de la lightbox
+        * @param { any } e
+        */
         function handleFunction(e){
             e.preventDefault();
             Lightbox.openLightbox();
@@ -91,6 +111,10 @@ function configLightbox(){
         }
     });
 }
+
+/**
+* Fonction qui donne la possibilité à l'utilisateur de pouvoir liker un média, en faisant attention que celui-ci n'est liké qu'une seule fois au maximum, que la valeur total du nombre de likes du photographe soit mise à jour en direct
+*/
 function likesByUsers(){
     let valueTotalLikes = document.querySelector("#total_likes_photographer");
     hearts = document.querySelectorAll(".description_media > .fa-heart");
@@ -183,6 +207,10 @@ Array.from(filterLinks).forEach((filter) => {
     // pour chaque filtre, on ajoute un listener au click
     filter.addEventListener("click", handleFunctionFilterEvent);
         // on récupère le type de filtre
+        /**
+        * Fonction pour l'évènement click pour le menu des filtres, récupération du type de filtre, et agissement en conséquence pour chaque 
+        * @param { any } event
+        */
         function handleFunctionFilterEvent(event){
             const type = event.target.getAttribute('data-filter-type');
             let sortedMedias;
@@ -220,11 +248,3 @@ Array.from(filterLinks).forEach((filter) => {
             likesByUsers();
         }
 });
-
-
-
-
-
-
-
-

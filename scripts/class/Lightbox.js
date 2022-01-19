@@ -1,10 +1,15 @@
 export class Lightbox{
-
+    /**
+    * Permet d'afficher la lightbox
+    */
     static openLightbox(){
         const lightbox = document.querySelector(".lightbox_container");
         lightbox.style.display="block";
     }
 
+    /**
+    * Ajoute un évènement click sur le bouton de fermeture pour ne plus afficher la lightbox
+    */
     static closeLightbox(){
         const lightbox = document.querySelector(".lightbox_container");
         const lightboxClose = document.querySelector(".lightbox_close");
@@ -23,21 +28,22 @@ export class Lightbox{
         }
     }
 
+    /**
+    * Affiche les photos/vidéos des photographes, met en place la navigation de la lightbox 
+    * @param { ArrayConstructor } dataMedias
+    * @param { Element } idCurrentMedia
+    * @param { string } idPhotographer
+    */
     static displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer){
         //le but de cette méthode est d'afficher les images/vidéos du photographe : toutes les données nécessaires sont dans dataMedias
-        console.log(idCurrentMedia);
-        console.log(dataMedias);
-        console.log(dataMedias.length);
         let idMedias = [];
         dataMedias.forEach(idMedia => {
             idMedias.push(idMedia.id);
         });
-        console.log(String(idMedias[0]));
 
         //rechercher l'index du média cliqué dans le tableau dataMedias grace a idCurrentMedia
         const conditionFindIndex = (element) => String(element) === idCurrentMedia;
         let indexOfCurrentMedia = idMedias.findIndex(conditionFindIndex);
-        console.log(indexOfCurrentMedia);
 
         //afficher la bonne image/video et le bon titre grace a l'index (bien déterminer si c'est une video ou une image)
         const imageLightbox = document.querySelector(".container_media img");
@@ -45,9 +51,12 @@ export class Lightbox{
         const titleLightbox = document.querySelector(".title_media_lightbox");
         let typeOfMedia = undefined;
         displayVideoOrImage(indexOfCurrentMedia);
-        function displayVideoOrImage(indexOfCurrentMedia){
-            //console.log(dataMedias[indexOfCurrentMedia].data);
 
+        /**
+        * Détermine si c'est une vidéo ou une image, et affiche le bon média
+        * @param { number } indexOfCurrentMedia
+        */
+        function displayVideoOrImage(indexOfCurrentMedia){
             titleLightbox.innerHTML = dataMedias[indexOfCurrentMedia].data.title;
 
             if(dataMedias[indexOfCurrentMedia].image === undefined){
@@ -73,25 +82,30 @@ export class Lightbox{
                 videoLightbox.setAttribute("src", `assets/photographers/medias/videos/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.video}`);
             }
         }
-        const nextButtonLightbox = document.querySelector(".lightbox_next");
 
+        const nextButtonLightbox = document.querySelector(".lightbox_next");
         nextButtonLightbox.addEventListener("click", handleFunctionNext);
 
+        /**
+        * Fonction pour l'évènement click sur le bouton next en prenant en compte si on arrive au dernier ou au premier média
+        */
         function handleFunctionNext(){
             if(indexOfCurrentMedia === dataMedias.length - 1){
                 indexOfCurrentMedia = 0;
-                console.log(indexOfCurrentMedia);
                 displayVideoOrImage(indexOfCurrentMedia);
             }
             else{
                 indexOfCurrentMedia++;
-                console.log(indexOfCurrentMedia);
                 displayVideoOrImage(indexOfCurrentMedia);
             }
-            
         }
 
         document.addEventListener("keydown", handleFunctionNextKey);
+
+        /**
+        * Fonction pour l'évènement keydown qui fait en sorte que si la touche flèche droite est utilisée, la méthode handleFunctionNext est appelée
+        * @param { any } e
+        */
         function handleFunctionNextKey(e){
             if(e.keyCode === 39){
                 handleFunctionNext();
@@ -99,9 +113,11 @@ export class Lightbox{
         }
     
         const beforeButtonLightbox = document.querySelector(".lightbox_before");
-
         beforeButtonLightbox.addEventListener("click", handleFunctionBefore);
 
+        /**
+        * Fonction pour l'évènement click sur le bouton before en prenant en compte si on arrive au dernier ou au premier média
+        */
         function handleFunctionBefore(){
             if(indexOfCurrentMedia === 0){
                 indexOfCurrentMedia = dataMedias.length - 1;
@@ -113,10 +129,14 @@ export class Lightbox{
                 console.log(indexOfCurrentMedia);
                 displayVideoOrImage(indexOfCurrentMedia);
             }
-            
         }
 
         document.addEventListener("keydown", handleFunctionBeforeKey);
+
+        /**
+        * Fonction pour l'évènement keydown qui fait en sorte que si la touche flèche gauche est utilisée, la méthode handleFunctionBefore est appelée
+        * @param { any } e
+        */
         function handleFunctionBeforeKey(e){
             if(e.keyCode === 37){
                 handleFunctionBefore();

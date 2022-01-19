@@ -77,6 +77,7 @@
     align-items: center;
     margin-right: 200px;
     margin-left: 200px;
+    padding-bottom: 100px;
 }
 
 .media-container article{
@@ -337,8 +338,7 @@ form #input_message{
 }
 
 .lightbox_container .container_media img{
-    max-width: 25%;    /*L'image n'empiète pas sur les flèches*/
-    height: auto;
+    width: 370px;    /*L'image n'empiète pas sur les flèches*/
     display: none;
 }
 
@@ -351,4 +351,22 @@ form #input_message{
     width: 40px;
     height: 40px;
     background: url(../assets/icons/loader_lightbox.svg) center center no-repeat;
+}
+
+@media(max-width: 1000px) {
+    .media-container{
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+    .media img ,.media video{
+        height: 550px;
+        width: 550px;
+    }
+}
+
+@media (min-width: 768px) {
+    .lightbox_container .container_media img{
+        max-width: 45%;    /*L'image n'empiète pas sur les flèches*/
+    }
 }

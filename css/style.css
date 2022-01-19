@@ -1,5 +1,10 @@
 @import url("photographer.css");
 
+@media screen and (max-width: 600px){
+    .photographer_section{
+        grid-template-columns: 1fr 1fr;
+    }
+}
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -78,26 +83,3 @@ h1 {
     color: #757575;
 }
 
-@media screen and (max-width: 1440px) {
-    .photographer_section{
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-}
-
-@media screen and (max-width: 768px){
-    .logo{
-        margin-left: 10px;
-        height: 40px;
-        padding: 20px;
-    }
-
-    header{
-        flex-wrap: wrap;
-    }
-
-    header h1{
-        margin-left: 30px;
-    }
-}

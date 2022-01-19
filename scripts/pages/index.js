@@ -3,6 +3,10 @@ import { MediaFactory } from "../class/MediaFactory.js";
 /*ASYNC : Une fonction asynchrone est une fonction qui s'exécute de façon asynchrone grâce à la boucle d'évènement en utilisant
 une promesse (Promise) comme valeur de retour.
 Cette fonction va récupérer les données des photographes et retourner les données récupérées*/
+/**
+* Fonction va récupérer les données des photographes et retourner les données récupérées
+* @return { Promise }
+*/
 export async function getPhotographers() {
 
     const reponse = await fetch("./data/photographers.json");
@@ -24,6 +28,10 @@ export async function getPhotographers() {
 
 const photographersSection = document.querySelector(".photographer_section");
 
+/**
+* Fonction qui affiche les données des différents photographes
+* @param { any } photographers
+*/
 export async function displayData(photographers) {
     photographers.forEach((photographer) => {
         const userCardDOM = photographer.HTMLForAllPhotographers();
@@ -31,6 +39,10 @@ export async function displayData(photographers) {
     });
 };
 
+/**
+* Fonction qui attend la promesse de getPhotographers(), affiche les données avec displayData(), et retourne les photographes
+* @return { any }
+*/
 export async function init() {
     // Récupère les datas des photographes
     const photographers = await getPhotographers(); //AWAIT : attend la promesse de getPhotographers()
