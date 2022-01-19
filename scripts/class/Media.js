@@ -76,7 +76,6 @@ export class Video extends Media{
     constructDOM(){
         const video = document.createElement("video");
         const linkMedia = document.createElement("a");
-        video.setAttribute("autoplay", "true");
         video.setAttribute("id", this.data.id);
         video.setAttribute("controls", "controls");
         linkMedia.appendChild(video);

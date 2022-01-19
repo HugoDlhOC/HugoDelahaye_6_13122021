@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/1dc19a4cc7.js" crossorigin="anonymous"></script>   <!--Script pour fontAwesome-->
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -9,8 +9,9 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header role="banner">
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+      <title>Fisheye logo</title>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -40,29 +41,30 @@
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal" aria-hidden="true" role="dialog" aria-describedby="Formulaire de contact">
-				<header>
-          <h1 role="heading">Contactez-moi</h1>
-          <img role="button" src="assets/icons/close.svg" onclick="closeModal()" />
+			<div class="modal" aria-hidden="true" role="dialog">
+				<header role="banner">
+          <h1>Contactez-moi</h1>
+          <img role="button" src="assets/icons/close.svg" alt="bouton fermeture formulaire" onclick="closeModal()" />
+          <title>Bouton fermeture formulaire</title>
         </header>
 				<form>
 					<div>
-						<label role="label">Prénom</label>
-						<input role="text field" id="input_first_name"/>
+						<label for="input_first_name">Prénom</label>
+						<input id="input_first_name"/>
 					</div>
           <div>
-						<label role="label">Nom</label>
-						<input role="text field" id="input_last_name"/>
+						<label for="input_last_name">Nom</label>
+						<input id="input_last_name"/>
 					</div>
           <div>
-						<label role="label">Email</label>
-						<input role="text field" id="input_mail"/>
+						<label for="input_mail">Email</label>
+						<input id="input_mail"/>
 					</div>
           <div>
-						<label role="label">Votre message</label>
-						<input role="text field" id="input_message"/>
+						<label for="input_message">Votre message</label>
+						<input id="input_message"/>
 					</div>
-          <button role="button" id="send_form" class="contact_button">Envoyer</button>
+          <button id="send_form" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
@@ -71,8 +73,8 @@
       <button class="lightbox_next"></button>
       <button class="lightbox_before"></button>
       <div class="container_media">
-        <img src="" alt="">
-        <video autoplay = "true" controls = "controls"></video>
+        <img src="#" alt="#">
+        <video controls = "controls"></video>
         <p class="title_media_lightbox"></p>
       </div>
     </div>
