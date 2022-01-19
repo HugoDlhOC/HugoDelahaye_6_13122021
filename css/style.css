@@ -1,6 +1,6 @@
 @import url("photographer.css");
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 768px){
     .photographer_section{
         grid-template-columns: 1fr 1fr;
     }

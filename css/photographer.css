@@ -353,20 +353,5 @@ form #input_message{
     background: url(../assets/icons/loader_lightbox.svg) center center no-repeat;
 }
 
-@media(max-width: 1000px) {
-    .media-container{
-        margin-left: 150px;
-        margin-right: 150px;
-    }
 
-    .media img ,.media video{
-        height: 550px;
-        width: 550px;
-    }
-}
 
-@media (min-width: 768px) {
-    .lightbox_container .container_media img{
-        max-width: 45%;    /*L'image n'empiète pas sur les flèches*/
-    }
-}

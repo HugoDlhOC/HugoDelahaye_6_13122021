@@ -1,0 +1,23 @@
+{
+  "name": "hugodelahaye_6_13122021",
+  "version": "1.0.0",
+  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^8.7.0"
+  },
+  "scripts": {
+    "eslint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HugoDlhOC/HugoDelahaye_6_13122021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HugoDlhOC/HugoDelahaye_6_13122021/issues"
+  },
+  "homepage": "https://github.com/HugoDlhOC/HugoDelahaye_6_13122021#readme"
+}

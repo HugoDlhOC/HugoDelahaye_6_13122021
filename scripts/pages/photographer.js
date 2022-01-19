@@ -166,23 +166,23 @@ const menuIconDown = document.getElementById("menu_icon_down");
 const menuIconUp = document.getElementById("menu_icon_up");
 
 //Si on clique sur le bouton, alors le menu s'affiche
-buttonOpenMenu.addEventListener("click", (e) => {
+buttonOpenMenu.addEventListener("click", () => {
     sortMenuOpenDiv.style.display="flex";
 });
 
 //Si on clique sur l'icone dédiée, alors le menu s'affiche
-menuIconDown.addEventListener("click", (e) => {
+menuIconDown.addEventListener("click", () => {
     sortMenuOpenDiv.style.display="flex";
 });
 
 //Si on clique sur un des 3 liens du menu, alors le menu disparait
 filterLinks.forEach((filterLink) => {
-    filterLink.addEventListener("click", (e) => {
+    filterLink.addEventListener("click", () => {
         sortMenuOpenDiv.style.display="none";
     });
 });
 //Si on clique sur l'icone dédiée, alors le menu disparait
-menuIconUp.addEventListener("click", (e) => {
+menuIconUp.addEventListener("click", () => {
     sortMenuOpenDiv.style.display="none";
 });
 //Lightbox
