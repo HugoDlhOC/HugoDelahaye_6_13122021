@@ -1,4 +1,9 @@
-#main{
+body{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+main{
     position: relative;
 }
 
@@ -367,6 +372,76 @@ form #input_message{
     width: 50%;
 }
 
+@media (max-width: 1280px){
+    .photograph-header article{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .photograph-header h3, .photograph-header p{
+        text-align: center;
+    }
+
+    .photograph-header p{
+        margin-bottom: 16px;
+    }
+
+    .photograph-header img{
+        order: -1;
+    }
+}
+
+@media (max-width: 1280px){
+    .photograph-header h2{
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 768px){
+    .photograph-header{
+        margin: 0;
+    }
+
+    .media-container article{
+        margin-left: 5px;
+    }
+}
+
+
+@media (max-width: 500px){
+    .photograph-header h2{
+        font-size: 28px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 325px){
+    .media img, .media video{
+        height: 300px;
+        width: 300px;
+    }
+
+    .media-container{
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
+
+
+/*
+@media (min-width: 640px){
+}
+
+@media (min-width: 768px){
+}
+
+@media (min-width: 1024px){
+}
+
+@media (min-width: 1280px){
+}
+*/
 
 
 
