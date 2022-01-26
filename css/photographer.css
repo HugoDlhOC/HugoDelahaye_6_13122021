@@ -15,44 +15,32 @@
     grid-area: profile_picture;
 }
 
-@media (max-width: 500px){
-    .photograph-header article{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-
 .photograph-header article{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);  /*Création de 4 colonnes*/
+    grid-template-columns: repeat(3, 1fr);  /*Création de colonnes*/
     grid-template-areas:    /*Définition de qui va occuper quoi dans la grille*/
-        "name           name        name                name                    profile_picture"
-        "location       location    contact_btn         contact_btn             profile_picture"
-        "description    description description         description             profile_picture";
-    
+        "informations_photographe           contact_btn                          profile_picture"
+        "informations_photographe           contact_btn                          profile_picture"
+        "informations_photographe           contact_btn                          profile_picture";
+
         padding: 40px;
 }
 
-
+.informations_photographe{
+    grid-area: informations_photographe;
+}
 
 .photograph-header h2{
-    grid-area: name;
     color: var(--primary-orange);
     font-size: 64px;
-
 }
 
 .photograph-header h3{
-    grid-area: location;
     color: var(--primary-red);
     font-size: 24px;
 }
 
 .photograph-header .photographer_description{
-    grid-area: description;
     font-size: 18px;
     color: var(--secondary-grey);
 }
@@ -219,7 +207,7 @@
 
 /*Fixed container*/
 .fixed_container{
-    background-color: #DB8876;
+    background-color: var(--primary-orange);
     position: fixed;
     right: 40px;
     bottom: 0px;
@@ -252,13 +240,13 @@
 }
 
 .modal form{
-    background-color: #DB8876;
+    background-color: var(--primary-orange);
 }
 
 
 .modal header {
     width: 80%;
-    background-color: #DB8876;
+    background-color: var(--primary-orange);
     padding: 20px;
     border-radius: 20px 20px 0px 0px;
     margin: auto;

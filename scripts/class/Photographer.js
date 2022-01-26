@@ -69,12 +69,13 @@ export class Photographer{
         h3.textContent = this.data.city + ", " + this.data.country;
         h3.setAttribute("aria-label", "ville du photographe");
         p1.textContent = this.data.tagline;  
-        p1.setAttribute("class", "photographer_description");                                         
+        p1.setAttribute("class", "photographer_description");   
+        div.setAttribute("class", "informations_photographe");                                     
         article.appendChild(div);
         div.setAttribute("aria-label", "informations du photographe");
         div.appendChild(h2);
-        div.appendChild(p1);
-        article.appendChild(h3);           
+        div.appendChild(h3);
+        div.appendChild(p1);          
         article.appendChild(button); 
         article.appendChild(img);                          
         return (article);                                  
