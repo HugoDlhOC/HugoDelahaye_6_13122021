@@ -10,14 +10,16 @@
   </head>
   <body>
     <header role="banner">
-      <img src="assets/images/logo.png" id="logo" alt="fisheye logo" title="Fisheye logo" aria-label="Fisheye Home page"/>
+      <a href="./index.html" aria-label="lien vers la page d'accueil">
+        <img src="assets/images/logo.png" id="logo" alt="fisheye logo" title="Fisheye logo" aria-label="Fisheye Home page"/>
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <button role="button" id="contact_me" class="contact_button" aria-label="remplir le formulaire de contact">Contactez-moi</button>
       </div>
-      <nav>
-        <div class="sort_menu_close" role="menuitem" aria-haspopup="true" id="button_open_menu">
+      <nav aria-haspopup="true">
+        <div class="sort_menu_close" id="button_open_menu">
           <button>Popularité</button>
           <i id="menu_icon_down" class="fas fa-chevron-down" aria-label="bouton pour développer le menu"></i>
         </div>
@@ -44,11 +46,10 @@
     </main>
     <!--Modal-->
     <div id="contact_modal">
-			<div class="modal" role="dialog" aria-labelledby="dialog-title">
+			<div class="modal" role="dialog" aria-labelledby="dialog_title">
 				<header role="banner">
           <h1 id="dialog_title">Contactez-moi</h1>
-          <img role="button" src="assets/icons/close.svg" alt="bouton fermeture formulaire" onclick="closeModal()" />
-          <title>Bouton fermeture formulaire</title>
+          <img role="button" src="assets/icons/close.svg" alt="bouton fermeture formulaire" aria-label="fermer le formulaire"/>
         </header>
 				<form>
 					<div aria-label="saisir le prénom">
@@ -71,14 +72,14 @@
 				</form>
 			</div>
 		</div>
-    <div class="lightbox_container">
-      <button class="lightbox_close"></button>
-      <button class="lightbox_next"></button>
-      <button class="lightbox_before"></button>
+    <div class="lightbox_container" role="dialog" aria-hidden="true" aria-label="image closeup view">
+      <button class="lightbox_close" aria-label="bouton pour fermer la visionneuse de médias"></button>
+      <button class="lightbox_next" aria-label="bouton pour passer au média suivant"></button>
+      <button class="lightbox_before" aria-label="bouton pour passer au média précédant"></button>
       <div class="container_media">
         <img src="#" alt="#">
         <video controls = "controls"></video>
-        <p class="title_media_lightbox"></p>
+        <p class="title_media_lightbox" aria-label="le titre du média est"></p>
       </div>
     </div>
     <script type="module" src="./scripts/class/Photographer.js"></script>

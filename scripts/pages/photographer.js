@@ -23,12 +23,12 @@ function totalNumberOfLikes(medias) {
 
     //Rangement de tous les likes dans un tableau
     for (let i = 0; i < lengthMedias; i++) {
-            arrayOfLikes[ i ] = medias[ i ].likes;
+        arrayOfLikes[ i ] = medias[ i ].likes;
     }
 
     //Calcul de tous les likes
     for (let j = 0; j < arrayOfLikes.length; j++) {
-            totalNumberOfLikes = totalNumberOfLikes + arrayOfLikes[ j ];
+        totalNumberOfLikes = totalNumberOfLikes + arrayOfLikes[ j ];
     }
     
     return totalNumberOfLikes;
@@ -148,7 +148,6 @@ function likesByUsers(){
 function toRecoverValueOfLikes(){
     let valueOFAllsLikes = document.getElementsByClassName("number_of_likes");  //Balises SPAN
     let tabValueOfAllsLikes = [];   //Tableau où l'on va ranger les valeurs
-    console.log(valueOFAllsLikes);
     Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
         tabValueOfAllsLikes.push(valueOfLike.innerHTML);
     });
@@ -164,7 +163,6 @@ function toRecoverValueOfLikes(){
 function toRecoverNewValueOfLikes(){
     let valueOFAllsLikes = document.getElementsByClassName("number_of_likes");
     let tabValueOfAllsLikes = [];
-    console.log(valueOFAllsLikes);
     Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
         tabValueOfAllsLikes.push(valueOfLike);
     });
@@ -184,8 +182,6 @@ function displayLikedMedias(tabValueOfAllsLikes){
 
     Array.from(spans).forEach((value) => {
         let indexOfLet = tabValues.indexOf(value.previousSibling.innerHTML);
-        console.log(indexOfLet);
-        console.log(tabValueOfAllsLikes[indexOfLet].innerHTML);
         value.innerHTML = tabValueOfAllsLikes[indexOfLet].innerHTML;
     });  
 }
@@ -200,8 +196,6 @@ let photographers = await getPhotographers();
 
 const photographersSection = document.querySelector(".photograph-header");
 let photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-//console.log(photographer.medias[0].title);
-
 
 //Affichage des infos du photographe
 displayDataPhotographerInfos(photographer);
@@ -212,20 +206,21 @@ const mediasSection = document.querySelector(".media-container");
 //Affichage des medias du photographe
 displayDataPhotographerMedia(photographer.medias);
 
-
 //MENU
 //Affichage du menu lorsque l'on clique sur le bouton Popularité
 //on récupère chaque lien permettant de filtrer les oeuvres
 const filterLinks = document.querySelectorAll(".filter_link");
 const sortMenuOpenDiv = document.querySelector(".sort_menu_open");
-const buttonOpenMenu = document.getElementById("button_open_menu");
+const divButtonOpenMenu = document.getElementById("button_open_menu");
+const ButtonOpenMenu = document.querySelector("#button_open_menu button");
 const menuIconDown = document.getElementById("menu_icon_down");
 const menuIconUp = document.getElementById("menu_icon_up");
 
 //Si on clique sur le bouton, alors le menu s'affiche
-buttonOpenMenu.addEventListener("click", () => {
+divButtonOpenMenu.addEventListener("click", () => {
     sortMenuOpenDiv.style.display="flex";
 });
+
 
 //Si on clique sur l'icone dédiée, alors le menu s'affiche
 menuIconDown.addEventListener("click", () => {
@@ -242,6 +237,9 @@ filterLinks.forEach((filterLink) => {
 menuIconUp.addEventListener("click", () => {
     sortMenuOpenDiv.style.display="none";
 });
+
+
+
 //Lightbox
 let linksMedias = undefined;
 configLightbox();
@@ -276,32 +274,23 @@ Array.from(filterLinks).forEach((filter) => {
             if(type === "date") {
                 // lancer une fonction qui va trier ton tableau medias (photographer.medias) en fonction du type de filtre sélectionné PAR SATE
                 sortedMedias = sortMediasByDate(photographer.medias);
-                buttonOpenMenu.innerHTML="Date";
+                ButtonOpenMenu.innerHTML="Date";
                 photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-                console.log(photographer.medias);
                 tabValueOfAllsLikes = toRecoverNewValueOfLikes();  
-                console.log(tabValueOfAllsLikes);
             }
             else if(type === "popularity") {
                 sortedMedias = sortMediasByPopularity(photographer.medias);
-                buttonOpenMenu.innerHTML="Popularité";
+                ButtonOpenMenu.innerHTML="Popularité";
                 photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-                console.log(photographer.medias);
                 tabValueOfAllsLikes = toRecoverNewValueOfLikes();
-                console.log(tabValueOfAllsLikes);
-                
             }
             else if(type === "title"){
                 sortedMedias = sortMediasByTitle(photographer.medias);
-                buttonOpenMenu.innerHTML="Titre";
+                ButtonOpenMenu.innerHTML="Titre";
                 photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
-                console.log(photographer.medias);
                 tabValueOfAllsLikes = toRecoverNewValueOfLikes();
-                console.log(tabValueOfAllsLikes);
             }
-            // une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
-            // d'abord, on efface le contenu de mediasSection
-            // puis on reconstruit l'html pour chaque media trié :
+            //une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
             displayDataPhotographerMedia(sortedMedias);
 
             //Likes de l'utilisateur 
@@ -312,8 +301,5 @@ Array.from(filterLinks).forEach((filter) => {
 
             //Lightbox
             configLightbox();
-
-            //let valueTotalLikes = document.querySelector("#total_likes_photographer");
-            //valueTotalLikes.innerHTML = totalNbLikes;
         }
 });

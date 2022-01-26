@@ -1,10 +1,15 @@
 export class Lightbox{
+    //REGROUPER CONSTANTES/VARIABLES , ÉVITER RÉPÉTITIONS
     /**
     * Permet d'afficher la lightbox
     */
     static openLightbox(){
         const lightbox = document.querySelector(".lightbox_container");
+        const main = document.querySelector("#main");
         lightbox.style.display="block";
+        lightbox.setAttribute("aria-hidden", "false");
+        main.setAttribute("aria-hidden", "true");
+        main.style.display="none";
     }
 
     /**
@@ -13,10 +18,14 @@ export class Lightbox{
     static closeLightbox(){
         const lightbox = document.querySelector(".lightbox_container");
         const lightboxClose = document.querySelector(".lightbox_close");
+        const main = document.querySelector("#main");
         lightboxClose.addEventListener("click", handleFunction);
         function handleFunction(e){
             e.preventDefault();
             lightbox.style.display="none";
+            main.setAttribute("aria-hidden", "false");
+            main.style.display="block";
+            lightbox.setAttribute("aria-hidden", "true");
         }
 
         document.addEventListener("keydown", handleFunctionEscapeKey);
@@ -24,6 +33,9 @@ export class Lightbox{
             if(e.key === "Escape"){
                 e.preventDefault();
                 lightbox.style.display="none";
+                main.setAttribute("aria-hidden", "false");
+                main.style.display="block";
+                lightbox.setAttribute("aria-hidden", "true");
             }
         }
     }
@@ -73,13 +85,17 @@ export class Lightbox{
 
             if(typeOfMedia === "image"){
                 imageLightbox.style.display = "block";
+                videoLightbox.setAttribute("alt", "#");
                 videoLightbox.style.display = "none";
                 imageLightbox.setAttribute("src", `assets/photographers/medias/images/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.image}`);
+                imageLightbox.setAttribute("alt", dataMedias[indexOfCurrentMedia].data.title);
             }
             else if(typeOfMedia === "video"){
                 videoLightbox.style.display = "block";
+                imageLightbox.setAttribute("alt", "#");
                 imageLightbox.style.display = "none";
                 videoLightbox.setAttribute("src", `assets/photographers/medias/videos/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.video}`);
+                videoLightbox.setAttribute("alt", dataMedias[indexOfCurrentMedia].data.title);
             }
         }
 

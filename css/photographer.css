@@ -2,7 +2,6 @@
     position: relative;
 }
 
-
 .photograph-header {
     background-color: #FAFAFA;
     margin: 0 100px;
@@ -16,35 +15,46 @@
     grid-area: profile_picture;
 }
 
+@media (max-width: 500px){
+    .photograph-header article{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
 .photograph-header article{
     display: grid;
     grid-template-columns: repeat(5, 1fr);  /*Création de 4 colonnes*/
-    grid-template-rows: repeat(3, 1fr);    /*Création de 10 lignes*/
     grid-template-areas:    /*Définition de qui va occuper quoi dans la grille*/
         "name           name        name                name                    profile_picture"
         "location       location    contact_btn         contact_btn             profile_picture"
         "description    description description         description             profile_picture";
-
+    
         padding: 40px;
 }
 
+
+
 .photograph-header h2{
     grid-area: name;
-    color: #D3573C;
+    color: var(--primary-orange);
     font-size: 64px;
 
 }
 
 .photograph-header h3{
     grid-area: location;
-    color: #901C1C;
+    color: var(--primary-red);
     font-size: 24px;
 }
 
 .photograph-header .photographer_description{
     grid-area: description;
     font-size: 18px;
-    color: #525252;
+    color: var(--secondary-grey);
 }
 
 .photograph-header article h3, .photograph-header article h2, .photographer_description{
@@ -64,9 +74,13 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--primary-red);
     border-radius: 5px;
     cursor: pointer;
+}
+
+.contact_button:hover, .contact_button:focus{
+    background-color: var(--primary-orange);
 }
 
 .media-container{
@@ -102,7 +116,7 @@
 
 .description_media p{
     font-size: 24px;
-    color: #901C1C;
+    color: var(--primary-red);
     margin-top: 5px;
 }
 
@@ -110,13 +124,17 @@
     margin-top: -15px;
     font-size: 24px;
     margin-left: auto;
-    color: #901C1C;
+    color: var(--primary-red);
     margin-right: 5px;
 }
 
 .description_media i{
-    color: #901C1C;
+    color: var(--primary-red);
     margin-top: -15px;
+}
+
+.description_media i:hover, .description_media i:focus{
+    color: var(--primary-orange);
 }
 
 /*MENU*/
@@ -125,10 +143,14 @@
     display: flex;
 }
 
+.sort_menu_close button:hover, .sort_menu_close button:focus{
+    background-color: var(--primary-orange);
+}
+
 .sort_menu_close button{
     padding: 10px;
     border-radius: 5px 0px 0px 5px;
-    background-color: #901C1C;
+    background-color: var(--primary-red);
     font-size: 18px;
     border: none;
     outline: none;
@@ -137,10 +159,14 @@
 }
 
 .sort_menu_close i{
-    background-color: #901C1C;
+    background-color: var(--primary-red);
     padding: 10px;
     border-radius: 0px 5px 5px 0px;
     color: white;
+}
+
+.sort_menu_close i:hover, .sort_menu_close:focus{
+    background-color: var(--primary-orange);
 }
 
 .sort_menu_open{
@@ -158,8 +184,12 @@
 .sort_menu_open .filter{
     text-decoration: none;
     list-style-type: none;
-    background-color: #901C1C;
+    background-color: var(--primary-red);
     padding: 10px 42px 10px 10px;
+}
+
+.sort_menu_open .filter:hover, .sort_menu_open:focus{
+    background-color: var(--primary-orange);
 }
 
 .sort_menu_open #filter_1{
@@ -213,15 +243,12 @@
 }
 
 .modal{
-    position: fixed;
-    top: 10%;
-    left: 50%;
-    width: 800px;
-    height: 900px;
-    margin-top: -100px;
-    margin-left: -390px;
-    padding: 20px;
+    height: 100%;
     overflow: auto;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
 }
 
 .modal form{
@@ -230,11 +257,11 @@
 
 
 .modal header {
-    justify-content: space-between;
     width: 80%;
     background-color: #DB8876;
     padding: 20px;
     border-radius: 20px 20px 0px 0px;
+    margin: auto;
 }
 
 .modal header img {
@@ -255,6 +282,7 @@ form {
     align-items: flex-start;
     padding: 20px;
     border-radius: 0px 0px 5px 5px;
+    margin: auto;
 }
 
 form label {
@@ -338,7 +366,7 @@ form #input_message{
 
 .lightbox_container .title_media_lightbox{
     font-size: 24px;
-    color : #901C1C;
+    color : var(--primary-red);
 }
 
 .lightbox_container .container_media img{

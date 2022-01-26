@@ -1,5 +1,6 @@
 const modalLaunchBtn = document.getElementById("contact_me");
 const modal = document.getElementById("contact_modal");
+const closeModalCross = document.querySelector("#contact_modal header img");
 const modalSend = document.querySelector("#send_form");
 const header = document.querySelector("header");
 const main = document.querySelector("#main");
@@ -37,6 +38,12 @@ function closeModal() {
         console.log(data.value);
     });
 }
+
+//Si l'on clique sur la croix pour fermer le formulaire
+closeModalCross.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeModal();
+});
 
 //Si l'on clique sur le bouton contactez-moi
 modalLaunchBtn.addEventListener("click", (e) => {
