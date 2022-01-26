@@ -9,12 +9,14 @@
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    box-sizing: border-box;
 }
 
 
 header {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     height: 90px;
@@ -23,11 +25,14 @@ header {
 h1 {
     color: var(--primary-red);
     margin-right: 100px;
+    margin-top: 16px;
+    padding-left: 97px;
 }
 
 #logo {
     height: 50px;
     margin-left: 100px;
+    margin-top: 16px;
 }
 
 .photographer_section {
@@ -95,8 +100,52 @@ h1 {
 }
 
 
-@media(max-width: 768px){
-    .photographer_section article h2 {
-        font-size: 76px;
+
+@media (max-width: 1024px){
+    .photographer_section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        margin-top: 100px;
+        align-items: baseline;
     }
 }
+
+@media (max-width: 640px){
+    header{
+        justify-content: center;
+    }
+    
+    #logo {
+        margin-left: 0px;
+    }
+
+    .photographer_section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 70px;
+        margin-top: 100px;
+        align-items: baseline;
+    }
+}
+
+@media (max-width: 465px){
+    h1{
+        padding-left: 0px;
+        margin: auto;
+    }
+}
+
+/*
+@media (min-width: 640px){
+}
+
+@media (min-width: 768px){
+}
+
+@media (min-width: 1024px){
+}
+
+@media (min-width: 1280px){
+}
+*/
