@@ -355,6 +355,7 @@ form #input_message{
     align-items: center;
     min-height: 100vh;  /*L'image est bien au milieu de l'écran*/
     flex-direction: column;
+    height: 100%;   /*Pour que le média occupe tout l'espace*/
 }
 
 .lightbox_container .title_media_lightbox{
@@ -363,13 +364,17 @@ form #input_message{
 }
 
 .lightbox_container .container_media img{
-    width: 370px;    /*L'image n'empiète pas sur les flèches*/
+    width: 100%;
+    height: 90%; /*Laisse de la place pour le titre du media*/
+    object-fit: contain;
     display: none;
 }
 
 .lightbox_container .container_media video{
+    width: 100%;
+    height: 90%; /*Laisse de la place pour le titre du media*/
+    object-fit: contain;
     display: none;
-    width: 50%;
 }
 
 @media (max-width: 1280px){
