@@ -94,3 +94,9 @@ h1 {
     text-align: center;
 }
 
+
+@media(max-width: 768px){
+    .photographer_section article h2 {
+        font-size: 76px;
+    }
+}

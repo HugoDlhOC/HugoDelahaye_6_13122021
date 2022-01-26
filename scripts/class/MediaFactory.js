@@ -5,9 +5,10 @@ export class MediaFactory {
   Les méthodes statiques sont généralement utilisées pour créer des fonctions utilitaires.*/
   static createMedia(media) {
     let newMedia;
-    if (media.hasOwnProperty('image')) {
+    if (Object.prototype.hasOwnProperty.call(media, "image")) {
+
       newMedia = new Image(media);
-    } else if (media.hasOwnProperty('video')) {
+    } else if (Object.prototype.hasOwnProperty.call(media, "video")) {
       newMedia = new Video(media);
     }
     return newMedia;

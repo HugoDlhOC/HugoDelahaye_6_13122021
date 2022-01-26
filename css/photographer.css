@@ -367,11 +367,6 @@ form #input_message{
     width: 50%;
 }
 
-.loader_lightbox{
-    width: 40px;
-    height: 40px;
-    background: url(../assets/icons/loader_lightbox.svg) center center no-repeat;
-}
 
 
 
