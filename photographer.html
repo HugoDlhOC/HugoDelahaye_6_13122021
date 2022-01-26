@@ -10,57 +10,60 @@
   </head>
   <body>
     <header role="banner">
-      <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
-      <title>Fisheye logo</title>
+      <img src="assets/images/logo.png" id="logo" alt="fisheye logo" title="Fisheye logo" aria-label="Fisheye Home page"/>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button id="contact_me" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button role="button" id="contact_me" class="contact_button" aria-label="remplir le formulaire de contact">Contactez-moi</button>
       </div>
-      <div class="sort_menu_close">
-        <button id="button_open_menu">Popularité</button>
-        <i id="menu_icon_down" class="fas fa-chevron-down"></i>
-      </div>
-      <div class="sort_menu_open">
-        <ul>
-          <li class="filter" id="filter_1">
-            <a data-filter-type="popularity" class="filter_link" href="#">Popularité</a>
-            <i id="menu_icon_up" class="fas fa-chevron-up"></i>
-          </li>
-          <li class="filter" id="filter_2">
-            <a data-filter-type="date" class="filter_link" href="#">Date</a>
-          </li>
-          <li class="filter" id="filter_3">
-            <a data-filter-type="title" class="filter_link" href="#">Titre</a>
-          </li>
-        </ul>
-      </div>
+      <nav>
+        <div class="sort_menu_close" role="menuitem" aria-haspopup="true" id="button_open_menu">
+          <button>Popularité</button>
+          <i id="menu_icon_down" class="fas fa-chevron-down" aria-label="bouton pour développer le menu"></i>
+        </div>
+        <div class="sort_menu_open" role="menu" aria-labelledby="button_open_menu">
+          <ul>
+            <li class="filter" id="filter_1" role="menuitem">
+              <a data-filter-type="popularity" class="filter_link" href="#">Popularité</a>
+              <i id="menu_icon_up" class="fas fa-chevron-up"></i>
+            </li>
+            <li class="filter" id="filter_2" role="menuitem">
+              <a data-filter-type="date" class="filter_link" href="#">Date</a>
+            </li>
+            <li class="filter" id="filter_3" role="menuitem">
+              <a data-filter-type="title" class="filter_link" href="#">Titre</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
       <div class="media-container">
       </div>
       <div class="fixed_container">
       </div>
     </main>
+    <!--Modal-->
     <div id="contact_modal">
-			<div class="modal" aria-hidden="true" role="dialog">
+			<div class="modal" role="dialog" aria-labelledby="dialog-title">
 				<header role="banner">
-          <h1>Contactez-moi</h1>
+          <h1 id="dialog_title">Contactez-moi</h1>
           <img role="button" src="assets/icons/close.svg" alt="bouton fermeture formulaire" onclick="closeModal()" />
           <title>Bouton fermeture formulaire</title>
         </header>
 				<form>
-					<div>
+					<div aria-label="saisir le prénom">
 						<label for="input_first_name">Prénom</label>
 						<input id="input_first_name"/>
 					</div>
-          <div>
+          <div aria-label="saisir le nom de famille">
 						<label for="input_last_name">Nom</label>
 						<input id="input_last_name"/>
 					</div>
-          <div>
+          <div aria-label="saisir l'adresse mail">
 						<label for="input_mail">Email</label>
 						<input id="input_mail"/>
 					</div>
-          <div>
+          <div aria-label="saisir le message souhaité">
 						<label for="input_message">Votre message</label>
 						<input id="input_message"/>
 					</div>

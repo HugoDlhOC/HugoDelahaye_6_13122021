@@ -37,7 +37,7 @@ export async function displayData(photographers) {
         const userCardDOM = photographer.HTMLForAllPhotographers();
         photographersSection.appendChild(userCardDOM);
     });
-};
+}
 
 /**
 * Fonction qui attend la promesse de getPhotographers(), affiche les données avec displayData(), et retourne les photographes

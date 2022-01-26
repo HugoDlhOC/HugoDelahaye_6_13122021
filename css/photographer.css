@@ -45,7 +45,6 @@
     grid-area: description;
     font-size: 18px;
     color: #525252;
-    margin-top: -35px;
 }
 
 .photograph-header article h3, .photograph-header article h2, .photographer_description{
@@ -90,6 +89,10 @@
     width: 400px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.media a{
+    text-decoration: none;
 }
 
 .description_media{
@@ -214,10 +217,11 @@
     top: 10%;
     left: 50%;
     width: 800px;
-    height: 200px;
+    height: 900px;
     margin-top: -100px;
     margin-left: -390px;
     padding: 20px;
+    overflow: auto;
 }
 
 .modal form{
@@ -227,7 +231,7 @@
 
 .modal header {
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
     background-color: #DB8876;
     padding: 20px;
     border-radius: 20px 20px 0px 0px;
@@ -246,7 +250,7 @@
 
 form {
     display: flex;
-    width: 100%;
+    width: 80%;
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
@@ -261,13 +265,13 @@ form label {
 form div {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 125%;
     align-items: self-start;
     margin-bottom: 26px;
 }
 
 form input {
-    width: 100%;
+    width: 80%;
     height: 68px;
     border: none;
     border-radius: 5px;

@@ -1,6 +1,6 @@
 import { Media } from "../class/Media.js";
 import { Lightbox } from "../class/Lightbox.js";
-import { getPhotographers, init } from "../pages/index.js";
+import { getPhotographers} from "../pages/index.js";
 
 /**
 * Afficher données des photographes (hors medias)
@@ -91,7 +91,6 @@ function sortMediasByTitle(medias) {
 
 /**
 * Fonction qui gère l'affichage de la lightbox en créant un évènement click sur toutes les balises a, utilisation des méthodes de la classe Lightbox
-
 */
 function configLightbox(){
     linksMedias = Array.from(document.querySelectorAll(".media > a"));
@@ -115,22 +114,80 @@ function configLightbox(){
 /**
 * Fonction qui donne la possibilité à l'utilisateur de pouvoir liker un média, en faisant attention que celui-ci n'est liké qu'une seule fois au maximum, que la valeur total du nombre de likes du photographe soit mise à jour en direct
 */
+
 function likesByUsers(){
     let valueTotalLikes = document.querySelector("#total_likes_photographer");
-    hearts = document.querySelectorAll(".description_media > .fa-heart");
-    console.log(valueTotalLikes);
-    hearts.forEach(heart => {
+    let tabValueOfAllsLikes = toRecoverValueOfLikes();  //Récupération des valeurs des likes
+    hearts = document.querySelectorAll(".description_media > .fa-heart");  //Récupération de tous les coeurs de la page
+    hearts.forEach((heart, index) => {  //Pour tous les likes, on ajoute un évènement click
         heart.addEventListener("click", handleFunctionLikes);
+
         function handleFunctionLikes(){
-            console.log(heart.previousElementSibling);
-            let valueLike = parseInt(heart.previousElementSibling.innerHTML);
-            valueLike++;
-            valueTotalLikes.innerHTML++;
-            heart.previousElementSibling.innerHTML = valueLike.toString();
-            console.log(valueTotalLikes);
-            heart.removeEventListener("click", handleFunctionLikes);
+            let valueLike = parseInt(heart.previousElementSibling.innerHTML);   //On récupère la valeur du like
+
+            //Si la valeur du like correspond bien à la valeur donnée via le fichier json, il peut être liké, sinon cela veut dire qu'il a déja été liké, alors l'utilisateur peut supprimer son like
+            if(valueLike === Number(tabValueOfAllsLikes[index])){
+                valueLike++;
+                valueTotalLikes.innerHTML++;
+                heart.previousElementSibling.innerHTML = valueLike.toString();
+            }
+            else if(valueLike === Number(tabValueOfAllsLikes[index]) + 1){
+                valueLike--;
+                valueTotalLikes.innerHTML--;
+                heart.previousElementSibling.innerHTML = valueLike.toString();
+            }
         }
     });
+}
+
+/**
+* Fonction qui permet de récupérer les valeurs actuelles des likes de la page
+* Cette fonction retourne le tableau avec les valeurs des likes, utile à likesByUsers()
+* @return { any[] }
+*/
+function toRecoverValueOfLikes(){
+    let valueOFAllsLikes = document.getElementsByClassName("number_of_likes");  //Balises SPAN
+    let tabValueOfAllsLikes = [];   //Tableau où l'on va ranger les valeurs
+    console.log(valueOFAllsLikes);
+    Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
+        tabValueOfAllsLikes.push(valueOfLike.innerHTML);
+    });
+
+    return tabValueOfAllsLikes;
+}
+
+/**
+* Cette fonction permet de récupérer les nouveaux likes (span) sur les médias ou likes retirés qu'il y a pu avoir sur la page
+* Cette fonction retourne dans un tableau avec le bonnes données de likes, utile pour les 3 éléments du menu
+* @return { any[] }
+*/
+function toRecoverNewValueOfLikes(){
+    let valueOFAllsLikes = document.getElementsByClassName("number_of_likes");
+    let tabValueOfAllsLikes = [];
+    console.log(valueOFAllsLikes);
+    Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
+        tabValueOfAllsLikes.push(valueOfLike);
+    });
+    return tabValueOfAllsLikes;
+}
+
+/**
+* Cette fonction permet d'afficher les likes déja likés précédemment, évite un reset des valeurs lorsque l'on change l'organisation des médias avec le menu 
+*/
+function displayLikedMedias(tabValueOfAllsLikes){
+    let spans = document.getElementsByClassName("number_of_likes");
+    let tabValues = [];
+
+    tabValueOfAllsLikes.forEach((value) => {
+        tabValues.push(value.previousSibling.innerHTML);
+    });
+
+    Array.from(spans).forEach((value) => {
+        let indexOfLet = tabValues.indexOf(value.previousSibling.innerHTML);
+        console.log(indexOfLet);
+        console.log(tabValueOfAllsLikes[indexOfLet].innerHTML);
+        value.innerHTML = tabValueOfAllsLikes[indexOfLet].innerHTML;
+    });  
 }
 
 //Récupération de l'id du photographe transmis dans l'url
@@ -198,9 +255,9 @@ const DOMCard = objMedia.HTMLForFixedContainer(totalNbLikes, photographer.price)
 const fixedContainer = document.querySelector(".fixed_container");
 fixedContainer.appendChild(DOMCard);
 
+//likes
 let hearts = undefined;
 likesByUsers();
-
 
 // Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
 Array.from(filterLinks).forEach((filter) => {
@@ -214,6 +271,7 @@ Array.from(filterLinks).forEach((filter) => {
         function handleFunctionFilterEvent(event){
             const type = event.target.getAttribute('data-filter-type');
             let sortedMedias;
+            let tabValueOfAllsLikes;
             // on applique la fonction adaptée au type de filtre sélectionné
             if(type === "date") {
                 // lancer une fonction qui va trier ton tableau medias (photographer.medias) en fonction du type de filtre sélectionné PAR SATE
@@ -221,30 +279,41 @@ Array.from(filterLinks).forEach((filter) => {
                 buttonOpenMenu.innerHTML="Date";
                 photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
                 console.log(photographer.medias);
+                tabValueOfAllsLikes = toRecoverNewValueOfLikes();  
+                console.log(tabValueOfAllsLikes);
             }
             else if(type === "popularity") {
                 sortedMedias = sortMediasByPopularity(photographer.medias);
                 buttonOpenMenu.innerHTML="Popularité";
                 photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
                 console.log(photographer.medias);
+                tabValueOfAllsLikes = toRecoverNewValueOfLikes();
+                console.log(tabValueOfAllsLikes);
+                
             }
             else if(type === "title"){
                 sortedMedias = sortMediasByTitle(photographer.medias);
                 buttonOpenMenu.innerHTML="Titre";
                 photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
                 console.log(photographer.medias);
+                tabValueOfAllsLikes = toRecoverNewValueOfLikes();
+                console.log(tabValueOfAllsLikes);
             }
             // une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
             // d'abord, on efface le contenu de mediasSection
             // puis on reconstruit l'html pour chaque media trié :
             displayDataPhotographerMedia(sortedMedias);
 
+            //Likes de l'utilisateur 
+            likesByUsers();
+
+            //FCT DE REMPLACEMENT VALEURS LIKÉES ICI
+            displayLikedMedias(tabValueOfAllsLikes);
+
             //Lightbox
             configLightbox();
 
-            //Likes de l'utilisateur 
-            let valueTotalLikes = document.querySelector("#total_likes_photographer");
-            valueTotalLikes.innerHTML = totalNbLikes;
-            likesByUsers();
+            //let valueTotalLikes = document.querySelector("#total_likes_photographer");
+            //valueTotalLikes.innerHTML = totalNbLikes;
         }
 });
