@@ -250,7 +250,7 @@ main{
 
 
 .modal header {
-    width: 80%;
+    width: 60%;
     background-color: var(--primary-orange);
     padding: 20px;
     border-radius: 20px 20px 0px 0px;
@@ -258,6 +258,7 @@ main{
     flex-wrap: nowrap;
     position: relative;
     height: 100px;
+    margin-top: 62px;
 }
 
 .modal header img {
@@ -281,12 +282,13 @@ main{
 
 form {
     display: flex;
-    width: 80%;
+    width: 60%;
     flex-direction: column;
     align-items: flex-start;
     padding: 80px 20px 20px 20px;
     border-radius: 0px 0px 5px 5px;
     margin: auto;
+    margin-bottom: 62px;
 }
 
 form label {
@@ -414,6 +416,13 @@ form #input_message{
     }
 }
 
+@media (max-width: 1024px){
+    #dialog_title, #name_photographer{
+        font-size: 40px;
+        margin-right: 0px;
+    }
+}
+
 @media (max-width: 768px){
     .photograph-header{
         margin: 0;
@@ -422,6 +431,14 @@ form #input_message{
     .media-container article{
         margin-left: 5px;
     }
+
+    .modal header, .modal form{
+        width: 80%;
+    }
+
+    .modal form div, .modal form div input{
+        width: 100%;
+    }
 }
 
 
@@ -429,6 +446,16 @@ form #input_message{
     .photograph-header h2{
         font-size: 28px;
         text-align: center;
+    }
+}
+
+@media (max-width: 425px){
+    .modal header img{
+        width: 36px;
+    }
+
+    .modal header span{
+        top: 135px;
     }
 }
 
