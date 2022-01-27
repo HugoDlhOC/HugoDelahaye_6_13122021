@@ -1,3 +1,5 @@
+import {photographer} from "../pages/photographer.js";
+
 const modalLaunchBtn = document.getElementById("contact_me");
 const modal = document.getElementById("contact_modal");
 const closeModalCross = document.querySelector("#contact_modal header img");
@@ -6,6 +8,7 @@ const header = document.querySelector("header");
 const main = document.querySelector("#main");
 const dataInput = document.querySelectorAll("input");
 const photgraphInfos = document.querySelector(".photograph-header");
+const spanNamePhotographer = document.querySelector("#name_photographer");
 
 function displayModal() {
     header.style.opacity = "0.8";
@@ -17,6 +20,7 @@ function displayModal() {
 	modal.style.display = "block";
     modal.setAttribute("arria-hidden", "false");
     modal.setAttribute("tabindex", "0");
+    spanNamePhotographer.innerHTML = photographer.name;
 }
 
 function closeModal() {

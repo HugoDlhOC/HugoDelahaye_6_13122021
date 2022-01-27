@@ -255,6 +255,9 @@ main{
     padding: 20px;
     border-radius: 20px 20px 0px 0px;
     margin: auto;
+    flex-wrap: nowrap;
+    position: relative;
+    height: 100px;
 }
 
 .modal header img {
@@ -266,6 +269,14 @@ main{
     font-weight: normal;
     text-align: center;
     color: black;
+    padding-left: 20px;
+}
+
+.modal header span{
+    position: absolute;
+    top: 120px;
+    left: 43px;
+    font-size: 64px;
 }
 
 form {
@@ -273,7 +284,7 @@ form {
     width: 80%;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
+    padding: 80px 20px 20px 20px;
     border-radius: 0px 0px 5px 5px;
     margin: auto;
 }

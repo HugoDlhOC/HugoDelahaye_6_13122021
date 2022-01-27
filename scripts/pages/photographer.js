@@ -195,7 +195,8 @@ IdPhotograph = parseInt(IdPhotograph);
 let photographers = await getPhotographers();
 
 const photographersSection = document.querySelector(".photograph-header");
-let photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+export let photographer = photographers.find((photographer) => photographer.id === IdPhotograph);
+console.log(photographer);
 
 //Affichage des infos du photographe
 displayDataPhotographerInfos(photographer);
