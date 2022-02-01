@@ -81,7 +81,7 @@ export class Image extends Media {
       "src",
       `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`
     );
-    image.setAttribute("alt", "photo du photographe");
+    image.setAttribute("alt", this.data.title);
     image.setAttribute("id", this.data.id);
     image.setAttribute("class", "media_image");
 
@@ -105,7 +105,7 @@ export class Video extends Media {
       "src",
       `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`
     );
-    video.setAttribute("title", "vidéo du photographe");
+    video.setAttribute("title", this.data.title);
     return linkMedia;
   }
 }
