@@ -1,85 +1,146 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/1dc19a4cc7.js" crossorigin="anonymous"></script>   <!--Script pour fontAwesome-->
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/1dc19a4cc7.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--Script pour fontAwesome-->
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header role="banner">
       <a href="./index.html">
-        <img src="assets/images/logo.png" id="logo" alt="Logo du site Fisheye"/>
+        <img
+          src="assets/images/logo.png"
+          id="logo"
+          alt="Logo du site Fisheye"
+        />
       </a>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button role="button" id="contact_me" class="contact_button" aria-label="remplir le formulaire de contact">Contactez-moi</button>
+        <button
+          role="button"
+          id="contact_me"
+          class="contact_button"
+          aria-label="remplir le formulaire de contact"
+        >
+          Contactez-moi
+        </button>
       </div>
       <nav aria-haspopup="true">
         <div class="sort_menu_close" id="button_open_menu">
           <button id="button_open" aria-label="trier médias">Popularité</button>
-          <i id="menu_icon_down" class="fas fa-chevron-down" aria-label="trier médias"></i>
+          <i
+            id="menu_icon_down"
+            class="fas fa-chevron-down"
+            aria-label="trier médias"
+          ></i>
         </div>
-        <div class="sort_menu_open" role="menu" aria-labelledby="button_open_menu">
+        <div
+          class="sort_menu_open"
+          role="menu"
+          aria-labelledby="button_open_menu"
+        >
           <ul>
             <li class="filter" id="filter_1" role="menuitem">
-              <a data-filter-type="popularity" aria-label="trier medias par popularité" class="filter_link" href="#">Popularité</a>
+              <a
+                data-filter-type="popularity"
+                aria-label="trier medias par popularité"
+                class="filter_link"
+                href="#"
+                >Popularité</a
+              >
               <i id="menu_icon_up" class="fas fa-chevron-up"></i>
             </li>
             <li class="filter" id="filter_2" role="menuitem">
-              <a data-filter-type="date" aria-label="trier medias par date" class="filter_link" href="#">Date</a>
+              <a
+                data-filter-type="date"
+                aria-label="trier medias par date"
+                class="filter_link"
+                href="#"
+                >Date</a
+              >
             </li>
             <li class="filter" id="filter_3" role="menuitem">
-              <a data-filter-type="title" aria-label="trier medias par ordre alphabétique" class="filter_link" href="#">Titre</a>
+              <a
+                data-filter-type="title"
+                aria-label="trier medias par ordre alphabétique"
+                class="filter_link"
+                href="#"
+                >Titre</a
+              >
             </li>
           </ul>
         </div>
       </nav>
-      
-      <div class="media-container">
-      </div>
-      <div class="fixed_container">
-      </div>
+
+      <div class="media-container"></div>
+      <div class="fixed_container"></div>
     </main>
     <!--Modal-->
     <div id="contact_modal">
-			<div class="modal" role="dialog" aria-labelledby="dialog_title">
-				<header role="banner">
+      <div class="modal" role="dialog" aria-labelledby="dialog_title">
+        <header role="banner">
           <h1 id="dialog_title">Contactez-moi</h1>
           <span id="name_photographer"></span>
-          <img role="button" src="assets/icons/close.svg" alt="bouton fermeture formulaire" aria-label="fermer le formulaire"/>
+          <img
+            role="button"
+            src="assets/icons/close.svg"
+            alt="bouton fermeture formulaire"
+            aria-label="fermer le formulaire"
+          />
         </header>
-				<form>
-					<div aria-label="saisir le prénom">
-						<label for="input_first_name">Prénom</label>
-						<input id="input_first_name"/>
-					</div>
+        <form>
+          <div aria-label="saisir le prénom">
+            <label for="input_first_name">Prénom</label>
+            <input id="input_first_name" />
+          </div>
           <div aria-label="saisir le nom de famille">
-						<label for="input_last_name">Nom</label>
-						<input id="input_last_name"/>
-					</div>
+            <label for="input_last_name">Nom</label>
+            <input id="input_last_name" />
+          </div>
           <div aria-label="saisir l'adresse mail">
-						<label for="input_mail">Email</label>
-						<input id="input_mail"/>
-					</div>
+            <label for="input_mail">Email</label>
+            <input id="input_mail" />
+          </div>
           <div aria-label="saisir le message souhaité">
-						<label for="input_message">Votre message</label>
-						<input id="input_message"/>
-					</div>
+            <label for="input_message">Votre message</label>
+            <input id="input_message" />
+          </div>
           <button id="send_form" class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <div class="lightbox_container" role="dialog" aria-hidden="true" aria-label="image closeup view">
-      <button class="lightbox_close" aria-label="bouton pour fermer la visionneuse de médias"></button>
-      <button class="lightbox_next" aria-label="bouton pour passer au média suivant"></button>
-      <button class="lightbox_before" aria-label="bouton pour passer au média précédant"></button>
+        </form>
+      </div>
+    </div>
+    <div
+      class="lightbox_container"
+      role="dialog"
+      aria-hidden="true"
+      aria-label="image closeup view"
+    >
+      <button
+        class="lightbox_close"
+        aria-label="bouton pour fermer la visionneuse de médias"
+      ></button>
+      <button
+        class="lightbox_next"
+        aria-label="bouton pour passer au média suivant"
+      ></button>
+      <button
+        class="lightbox_before"
+        aria-label="bouton pour passer au média précédant"
+      ></button>
       <div class="container_media">
-        <img src="#" alt="#">
-        <video controls = "controls"></video>
+        <img src="#" alt="#" />
+        <video controls="controls"></video>
         <p class="title_media_lightbox" aria-label="le titre du média est"></p>
       </div>
     </div>

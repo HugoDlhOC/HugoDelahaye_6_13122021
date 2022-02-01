@@ -1,139 +1,139 @@
 @import url("photographer.css");
 
 :root {
-    --primary-red: #901C1C;
-    --primary-orange: #DB8876;
-    --secondary-grey: #525252;
+  --primary-red: #901c1c;
+  --primary-orange: #d3573c;
+  --primary-orange-blade : #DB8876;
+  --secondary-grey: #525252;
 }
 
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
-    box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-
 header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
 }
 
 h1 {
-    color: var(--primary-red);
-    margin-right: 100px;
-    margin-top: 16px;
-    padding-left: 97px;
+  color: var(--primary-red);
+  margin-right: 100px;
+  margin-top: 16px;
+  padding-left: 97px;
 }
 
 #logo {
-    height: 50px;
-    margin-left: 100px;
-    margin-top: 16px;
+  height: 50px;
+  margin-left: 100px;
+  margin-top: 16px;
 }
 
 .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
-    align-items: baseline;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+  align-items: baseline;
 }
 
-.photographer_section a{
-    text-decoration: none;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.photographer_section a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .photographer_section article {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .photographer_section article h2 {
-    color: var(--primary-orange);
-    font-size: 36px;
-    font-weight: normal;
-    margin-bottom: 0px;
-    text-align: center;
-    white-space: nowrap;
+  color: var(--primary-orange);
+  font-size: 36px;
+  font-weight: normal;
+  margin-bottom: 0px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .photographer_section article img {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.photographer_section article h3, .photographer_description, .photographer_price{
-    margin-bottom: 0px;
-    margin-top: 0px;
+.photographer_section article h3,
+.photographer_description,
+.photographer_price {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .photographer_section article h3 {
-    color: var(--primary-red);
-    font-size: 13px;
-    font-weight: normal;
+  color: var(--primary-red);
+  font-size: 13px;
+  font-weight: normal;
 }
 
 .photographer_section article .photographer_description {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .photographer_section article .photographer_price {
-    font-size: 9px;
-    color: #757575;
+  font-size: 9px;
+  color: #757575;
 }
 
-.description_photograph{
-    text-align: center;
+.description_photograph {
+  text-align: center;
 }
 
-
-
-@media (max-width: 1024px){
-    .photographer_section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 70px;
-        margin-top: 100px;
-        align-items: baseline;
-    }
+@media (max-width: 1024px) {
+  .photographer_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
+    align-items: baseline;
+  }
 }
 
-@media (max-width: 640px){
-    header{
-        justify-content: center;
-    }
-    
-    #logo {
-        margin-left: 0px;
-    }
+@media (max-width: 640px) {
+  header {
+    justify-content: center;
+  }
 
-    .photographer_section {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 70px;
-        margin-top: 100px;
-        align-items: baseline;
-    }
+  #logo {
+    margin-left: 0px;
+  }
+
+  .photographer_section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 70px;
+    margin-top: 100px;
+    align-items: baseline;
+  }
 }
 
-@media (max-width: 465px){
-    h1{
-        padding-left: 0px;
-        margin: auto;
-    }
+@media (max-width: 465px) {
+  h1 {
+    padding-left: 0px;
+    margin: auto;
+  }
 }
 
 /*
