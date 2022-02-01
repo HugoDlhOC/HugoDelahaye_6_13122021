@@ -10,8 +10,8 @@
   </head>
   <body>
     <header role="banner">
-      <a href="./index.html" aria-label="lien vers la page d'accueil">
-        <img src="assets/images/logo.png" id="logo" alt="fisheye logo" title="Fisheye logo" aria-label="Fisheye Home page"/>
+      <a href="./index.html">
+        <img src="assets/images/logo.png" id="logo" alt="Logo du site Fisheye"/>
       </a>
     </header>
     <main id="main">
@@ -20,20 +20,20 @@
       </div>
       <nav aria-haspopup="true">
         <div class="sort_menu_close" id="button_open_menu">
-          <button>Popularité</button>
-          <i id="menu_icon_down" class="fas fa-chevron-down" aria-label="bouton pour développer le menu"></i>
+          <button id="button_open" aria-label="trier médias">Popularité</button>
+          <i id="menu_icon_down" class="fas fa-chevron-down" aria-label="trier médias"></i>
         </div>
         <div class="sort_menu_open" role="menu" aria-labelledby="button_open_menu">
           <ul>
             <li class="filter" id="filter_1" role="menuitem">
-              <a data-filter-type="popularity" class="filter_link" href="#">Popularité</a>
+              <a data-filter-type="popularity" aria-label="trier medias par popularité" class="filter_link" href="#">Popularité</a>
               <i id="menu_icon_up" class="fas fa-chevron-up"></i>
             </li>
             <li class="filter" id="filter_2" role="menuitem">
-              <a data-filter-type="date" class="filter_link" href="#">Date</a>
+              <a data-filter-type="date" aria-label="trier medias par date" class="filter_link" href="#">Date</a>
             </li>
             <li class="filter" id="filter_3" role="menuitem">
-              <a data-filter-type="title" class="filter_link" href="#">Titre</a>
+              <a data-filter-type="title" aria-label="trier medias par ordre alphabétique" class="filter_link" href="#">Titre</a>
             </li>
           </ul>
         </div>

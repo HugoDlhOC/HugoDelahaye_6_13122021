@@ -23,11 +23,9 @@ export class Photographer{
         const div1 = document.createElement("div");
         const div2 = document.createElement("div");
         div1.setAttribute("class", "link_photograph");
-        div1.setAttribute("aria-label", this.data.name);
         div2.setAttribute("class", "description_photograph");
         img.setAttribute("src", `assets/photographers/portraits/${this.data.portrait}`);                        //Ajout de l'attribut src avec la bonne source la photo (lien)
-        img.setAttribute("alt", this.data.name); 
-        img.setAttribute("aria-label", "portrait du photographe");  
+        img.setAttribute("alt", "portrait du photographe");  
 
         h2.textContent = this.data.name;                                  //Ajout du nom du photographe
         h3.textContent = this.data.city + ", " + this.data.country;
@@ -62,14 +60,14 @@ export class Photographer{
         const img = document.createElement("img");            //Créer une balise img
         const button = document.getElementById("contact_me");
         img.setAttribute("src", `assets/photographers/portraits/${this.data.portrait}`);                        //Ajout de l'attribut src avec la bonne source la photo (lien)
-        img.setAttribute("alt", this.data.name);   
-        img.setAttribute("aria-label", "portrait du photographe");
+        img.setAttribute("alt", `portrait du photographe ${this.data.name}`);    
         h2.textContent = this.data.name;                                  //Ajout du nom du photographe
         h2.setAttribute("aria-label", "nom du photographe");
         h3.textContent = this.data.city + ", " + this.data.country;
         h3.setAttribute("aria-label", "ville du photographe");
         p1.textContent = this.data.tagline;  
         p1.setAttribute("class", "photographer_description");   
+        p1.setAttribute("aria-label", "slogan du photographe");
         div.setAttribute("class", "informations_photographe");                                     
         article.appendChild(div);
         div.setAttribute("aria-label", "informations du photographe");

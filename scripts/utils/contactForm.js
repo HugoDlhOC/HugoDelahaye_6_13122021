@@ -10,6 +10,9 @@ const dataInput = document.querySelectorAll("input");
 const photgraphInfos = document.querySelector(".photograph-header");
 const spanNamePhotographer = document.querySelector("#name_photographer");
 
+const firstFocusableElement = dataInput[0];
+const lastFocusableElement = document.querySelector("#contact_modal header img");
+
 function displayModal() {
     header.style.opacity = "0.8";
     header.setAttribute("aria-hidden", "true");
@@ -18,10 +21,15 @@ function displayModal() {
     photgraphInfos.style.opacity = "0.8";
     photgraphInfos.setAttribute("aria-hidden", "true");
 	modal.style.display = "block";
-    modal.setAttribute("arria-hidden", "false");
-    modal.setAttribute("tabindex", "0");
+    modal.setAttribute("aria-hidden", "false");
+    closeModalCross.setAttribute("tabindex", "1");
     spanNamePhotographer.innerHTML = photographer.name;
+    dataInput[0].focus();
 }
+
+modalSend.addEventListener("focus", () => {
+    //dataInput[2].focus();
+});
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
@@ -61,5 +69,25 @@ modalSend.addEventListener("click", (e) => {
     closeModal();
 });
 
-
-
+//Gestion de la navigation clavier de la modale pour que l'on ne sorte pas de cette dernière
+document.addEventListener('keydown', (e) => {
+    let isKeyTabPressed = e.key === 'Tab';
+  
+    if (!isKeyTabPressed) { //Si tab n'est pas pressé
+      return;
+    }
+  
+    if (e.shiftKey) { //Si maj + tab est pressé (retour arrière)
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); //On met le focus sur le dernier élément
+        e.preventDefault();
+      }
+    }
+    else { //Si la touche tab est pressée
+      if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+});
+  

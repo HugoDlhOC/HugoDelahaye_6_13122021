@@ -1,11 +1,17 @@
+const lightbox = document.querySelector(".lightbox_container");
+const main = document.querySelector("#main");
+const lightboxClose = document.querySelector(".lightbox_close");
+const imageLightbox = document.querySelector(".container_media img");
+const videoLightbox = document.querySelector(".container_media video");
+const titleLightbox = document.querySelector(".title_media_lightbox");
+const nextButtonLightbox = document.querySelector(".lightbox_next");
+const beforeButtonLightbox = document.querySelector(".lightbox_before");
+
 export class Lightbox{
-    //REGROUPER CONSTANTES/VARIABLES , ÉVITER RÉPÉTITIONS
     /**
     * Permet d'afficher la lightbox
     */
     static openLightbox(){
-        const lightbox = document.querySelector(".lightbox_container");
-        const main = document.querySelector("#main");
         lightbox.style.display="block";
         lightbox.setAttribute("aria-hidden", "false");
         main.setAttribute("aria-hidden", "true");
@@ -16,11 +22,9 @@ export class Lightbox{
     * Ajoute un évènement click sur le bouton de fermeture pour ne plus afficher la lightbox
     */
     static closeLightbox(){
-        const lightbox = document.querySelector(".lightbox_container");
-        const lightboxClose = document.querySelector(".lightbox_close");
-        const main = document.querySelector("#main");
-        lightboxClose.addEventListener("click", handleFunction);
-        function handleFunction(e){
+        lightboxClose.addEventListener("click", eventFctHideLightbox);
+        
+        function eventFctHideLightbox(e){
             e.preventDefault();
             lightbox.style.display="none";
             main.setAttribute("aria-hidden", "false");
@@ -28,8 +32,9 @@ export class Lightbox{
             lightbox.setAttribute("aria-hidden", "true");
         }
 
-        document.addEventListener("keydown", handleFunctionEscapeKey);
-        function handleFunctionEscapeKey(e){
+        document.addEventListener("keydown", eventFctEscapeKey);
+
+        function eventFctEscapeKey(e){
             if(e.key === "Escape"){
                 e.preventDefault();
                 lightbox.style.display="none";
@@ -58,9 +63,6 @@ export class Lightbox{
         let indexOfCurrentMedia = idMedias.findIndex(conditionFindIndex);
 
         //afficher la bonne image/video et le bon titre grace a l'index (bien déterminer si c'est une video ou une image)
-        const imageLightbox = document.querySelector(".container_media img");
-        const videoLightbox = document.querySelector(".container_media video");
-        const titleLightbox = document.querySelector(".title_media_lightbox");
         let typeOfMedia = undefined;
         displayVideoOrImage(indexOfCurrentMedia);
 
@@ -99,13 +101,12 @@ export class Lightbox{
             }
         }
 
-        const nextButtonLightbox = document.querySelector(".lightbox_next");
-        nextButtonLightbox.addEventListener("click", handleFunctionNext);
+        nextButtonLightbox.addEventListener("click", eventFctNextMedia);
 
         /**
         * Fonction pour l'évènement click sur le bouton next en prenant en compte si on arrive au dernier ou au premier média
         */
-        function handleFunctionNext(){
+        function eventFctNextMedia(){
             if(indexOfCurrentMedia === dataMedias.length - 1){
                 indexOfCurrentMedia = 0;
                 displayVideoOrImage(indexOfCurrentMedia);
@@ -116,25 +117,24 @@ export class Lightbox{
             }
         }
 
-        document.addEventListener("keydown", handleFunctionNextKey);
+        document.addEventListener("keydown", eventFctNextMediaKey);
 
         /**
         * Fonction pour l'évènement keydown qui fait en sorte que si la touche flèche droite est utilisée, la méthode handleFunctionNext est appelée
         * @param { any } e
         */
-        function handleFunctionNextKey(e){
+        function eventFctNextMediaKey(e){
             if(e.keyCode === 39){
-                handleFunctionNext();
+                eventFctNextMedia();
             }
         }
     
-        const beforeButtonLightbox = document.querySelector(".lightbox_before");
-        beforeButtonLightbox.addEventListener("click", handleFunctionBefore);
+        beforeButtonLightbox.addEventListener("click", eventFctPreviousMedia);
 
         /**
         * Fonction pour l'évènement click sur le bouton before en prenant en compte si on arrive au dernier ou au premier média
         */
-        function handleFunctionBefore(){
+        function eventFctPreviousMedia(){
             if(indexOfCurrentMedia === 0){
                 indexOfCurrentMedia = dataMedias.length - 1;
                 console.log(indexOfCurrentMedia);
@@ -147,15 +147,15 @@ export class Lightbox{
             }
         }
 
-        document.addEventListener("keydown", handleFunctionBeforeKey);
+        document.addEventListener("keydown", eventFctPreviousMediaKey);
 
         /**
         * Fonction pour l'évènement keydown qui fait en sorte que si la touche flèche gauche est utilisée, la méthode handleFunctionBefore est appelée
         * @param { any } e
         */
-        function handleFunctionBeforeKey(e){
+        function eventFctPreviousMediaKey(e){
             if(e.keyCode === 37){
-                handleFunctionBefore();
+                eventFctPreviousMedia();
             }
         }
     }
