@@ -1,9 +1,6 @@
 import { Photographer } from "../class/Photographer.js";
 import { MediaFactory } from "../factories/MediaFactory.js";
 
-/*ASYNC : Une fonction asynchrone est une fonction qui s'exécute de façon asynchrone grâce à la boucle d'évènement en utilisant
-une promesse (Promise) comme valeur de retour.
-Cette fonction va récupérer les données des photographes et retourner les données récupérées*/
 /**
  * Fonction va récupérer les données des photographes et retourner les données récupérées
  * @return { Promise }
@@ -19,8 +16,7 @@ export async function getPhotographers() {
       (media) => media.photographerId === photographer.id
     );
 
-    //console.log(medias);
-    // on transforme les medias issus du json en instances de Media, grâce à notre factory (on aura soit une instance d'Image, soit une instance de Video)
+    // on transforme les medias issus du fichier .json en instances de Media, grâce à notre factory (on aura soit une instance d'Image, soit une instance de Video)
     const mediasInstances = medias.map((media) =>
       MediaFactory.createMedia(media)
     );
@@ -50,7 +46,6 @@ async function displayData(photographers) {
 async function init() {
   // Récupère les datas des photographes
   const photographers = await getPhotographers(); //AWAIT : attend la promesse de getPhotographers()
-  console.log(photographers);
   displayData(photographers); //On affiche les données des photographes
   return photographers;
 }

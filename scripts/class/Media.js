@@ -22,7 +22,7 @@ export class Media {
     divDescriptionMedia.setAttribute("class", "description_media");
     divDescriptionMedia.setAttribute("id", this.data.title);
     iconeHeart.setAttribute("class", "fas fa-heart");
-    iconeHeart.setAttribute("aria-label", "bouton coeur pour aimer le média");
+    iconeHeart.setAttribute("aria-label", "likes");
     divMedia.setAttribute("id", "media");
     divMedia.setAttribute("class", "media");
     divMedia.appendChild(this.constructDOM()); // la methode constructDOM appelée sera celle de l'image ou de la vidéo, en fonction du type de l'instance courante
@@ -77,11 +77,12 @@ export class Image extends Media {
       "href",
       `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`
     );
+    linkMedia.setAttribute("title", "image du photographe");
     image.setAttribute(
       "src",
       `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`
     );
-    image.setAttribute("alt", this.data.title);
+    image.setAttribute("alt", `${this.data.title}, vue gallerie`);
     image.setAttribute("id", this.data.id);
     image.setAttribute("class", "media_image");
 
@@ -101,11 +102,12 @@ export class Video extends Media {
       "href",
       `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`
     );
+    linkMedia.setAttribute("title", "video du photographe");
     video.setAttribute(
       "src",
       `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`
     );
-    video.setAttribute("title", this.data.title);
+    video.setAttribute("title", `${this.data.title}, vue gallerie`);
     return linkMedia;
   }
 }

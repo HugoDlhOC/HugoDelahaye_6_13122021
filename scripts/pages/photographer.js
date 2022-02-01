@@ -16,7 +16,7 @@ function displayDataPhotographerInfos(photographer) {
  * @param { any } medias
  * @return { number }
  */
-function totalNumberOfLikes(medias) {
+function calculValueTotalNumberOfLikes(medias) {
   const lengthMedias = medias.length;
   let arrayOfLikes = [length];
   let totalNumberOfLikes = 0;
@@ -120,7 +120,7 @@ function configLightbox() {
  * Fonction qui donne la possibilité à l'utilisateur de pouvoir liker un média, en faisant attention que celui-ci n'est liké qu'une seule fois au maximum, que la valeur total du nombre de likes du photographe soit mise à jour en direct
  */
 
-function likesByUsers() {
+function configurationLikesUsers() {
   let valueTotalLikes = document.querySelector("#total_likes_photographer");
   let tabValueOfAllsLikes = toRecoverValueOfLikes(); //Récupération des valeurs des likes
   hearts = document.querySelectorAll(".description_media > .fa-heart"); //Récupération de tous les coeurs de la page
@@ -147,7 +147,7 @@ function likesByUsers() {
 
 /**
  * Fonction qui permet de récupérer les valeurs actuelles des likes de la page
- * Cette fonction retourne le tableau avec les valeurs des likes, utile à likesByUsers()
+ * Cette fonction retourne le tableau avec les valeurs des likes, utile à configurationLikesUsers()
  * @return { any[] }
  */
 function toRecoverValueOfLikes() {
@@ -165,7 +165,7 @@ function toRecoverValueOfLikes() {
  * Cette fonction retourne dans un tableau avec le bonnes données de likes, utile pour les 3 éléments du menu
  * @return { any[] }
  */
-function toRecoverNewValueOfLikes() {
+function toRecoverValueOfLikesAfterChanges() {
   let valueOFAllsLikes = document.getElementsByClassName("number_of_likes");
   let tabValueOfAllsLikes = [];
   Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
@@ -203,7 +203,6 @@ const photographersSection = document.querySelector(".photograph-header");
 export let photographer = photographers.find(
   (photographer) => photographer.id === IdPhotograph
 );
-console.log(photographer);
 
 //Affichage des infos du photographe
 displayDataPhotographerInfos(photographer);
@@ -252,7 +251,7 @@ configLightbox();
 //L'utilisateur peut aimer un media
 //div nombre total likes + tarif photographe (fixedContainer)
 //Nombre total de likes
-const totalNbLikes = totalNumberOfLikes(photographer.medias);
+const totalNbLikes = calculValueTotalNumberOfLikes(photographer.medias);
 let objMedia = new Media(photographer.medias);
 const DOMCard = objMedia.HTMLForFixedContainer(
   totalNbLikes,
@@ -263,7 +262,7 @@ fixedContainer.appendChild(DOMCard);
 
 //likes
 let hearts = undefined;
-likesByUsers();
+configurationLikesUsers();
 
 // Array.from car querySelectorAll ne retourne pas un tableau mais un itérateur
 Array.from(filterLinks).forEach((filter) => {
@@ -286,27 +285,27 @@ Array.from(filterLinks).forEach((filter) => {
       photographer = photographers.find(
         (photographer) => photographer.id === IdPhotograph
       );
-      tabValueOfAllsLikes = toRecoverNewValueOfLikes();
+      tabValueOfAllsLikes = toRecoverValueOfLikesAfterChanges();
     } else if (type === "popularity") {
       sortedMedias = sortMediasByPopularity(photographer.medias);
       ButtonOpenMenu.innerHTML = "Popularité";
       photographer = photographers.find(
         (photographer) => photographer.id === IdPhotograph
       );
-      tabValueOfAllsLikes = toRecoverNewValueOfLikes();
+      tabValueOfAllsLikes = toRecoverValueOfLikesAfterChanges();
     } else if (type === "title") {
       sortedMedias = sortMediasByTitle(photographer.medias);
       ButtonOpenMenu.innerHTML = "Titre";
       photographer = photographers.find(
         (photographer) => photographer.id === IdPhotograph
       );
-      tabValueOfAllsLikes = toRecoverNewValueOfLikes();
+      tabValueOfAllsLikes = toRecoverValueOfLikesAfterChanges();
     }
     //une fois que notre tableau est trié, on peut reconstruire les éléments html dans le bon ordre :
     displayDataPhotographerMedia(sortedMedias);
 
     //Likes de l'utilisateur
-    likesByUsers();
+    configurationLikesUsers();
 
     //FCT DE REMPLACEMENT VALEURS LIKÉES ICI
     displayLikedMedias(tabValueOfAllsLikes);

@@ -29,10 +29,6 @@ function displayModal() {
   dataInput[0].focus();
 }
 
-modalSend.addEventListener("focus", () => {
-  //dataInput[2].focus();
-});
-
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
@@ -88,8 +84,7 @@ document.addEventListener("keydown", (e) => {
   } else {
     //Si la touche tab est pressée
     if (document.activeElement === lastFocusableElement) {
-      // if focused has reached to last focusable element then focus first focusable element after pressing tab
-      firstFocusableElement.focus(); // add focus for the first focusable element
+      firstFocusableElement.focus();
       e.preventDefault();
     }
   }
