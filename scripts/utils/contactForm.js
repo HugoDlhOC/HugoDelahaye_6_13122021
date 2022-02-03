@@ -11,32 +11,28 @@ const photgraphInfos = document.querySelector(".photograph-header");
 const spanNamePhotographer = document.querySelector("#name_photographer");
 
 const firstFocusableElement = dataInput[0];
-const lastFocusableElement = document.querySelector(
-  "#contact_modal header img"
-);
+const lastFocusableElement = document.querySelector("#contact_modal header img");
 
 function displayModal() {
-  header.style.opacity = "0.8";
+  header.classList.add("decrease_opacity");
+  main.classList.add("decrease_opacity");
+  photgraphInfos.classList.add("decrease_opacity");
+  spanNamePhotographer.innerHTML = photographer.name;
+  modal.classList.replace("no_display" ,"display_block");
   header.setAttribute("aria-hidden", "true");
-  main.style.opacity = "0.8";
   main.setAttribute("aria-hidden", "true");
-  photgraphInfos.style.opacity = "0.8";
   photgraphInfos.setAttribute("aria-hidden", "true");
-  modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   closeModalCross.setAttribute("tabindex", "1");
-  spanNamePhotographer.innerHTML = photographer.name;
   dataInput[0].focus();
 }
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
-  modal.style.display = "none";
-  header.style.display = "flex";
-  main.style.display = "block";
-  header.style.opacity = "1";
-  main.style.opacity = "1";
-  photgraphInfos.style.opacity = "1";
+  modal.classList.replace("display_block", "no_display");
+  main.classList.replace("decrease_opacity","normal_opacity");
+  header.classList.replace("decrease_opacity","normal_opacity");
+  photgraphInfos.classList.replace("decrease_opacity", "normal_opacity");
   header.setAttribute("aria-hidden", "false");
   main.setAttribute("aria-hidden", "false");
   photgraphInfos.setAttribute("aria-hidden", "false");

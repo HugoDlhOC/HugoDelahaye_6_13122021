@@ -16,7 +16,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role="banner">
+    <header role="banner" id="header_page">
       <a href="./index.html">
         <img
           src="assets/images/logo.png"
@@ -37,6 +37,7 @@
         </button>
       </div>
       <nav aria-haspopup="true">
+        <span>Trier par</span>
         <div class="sort_menu_close" id="button_open_menu">
           <button id="button_open" aria-label="trier médias">Popularité</button>
           <i
@@ -87,7 +88,7 @@
       <div class="fixed_container"></div>
     </main>
     <!--Modal-->
-    <div id="contact_modal">
+    <div id="contact_modal" class="no_display">
       <div class="modal" role="dialog" aria-labelledby="dialog_title">
         <header role="banner">
           <h1 id="dialog_title">Contactez-moi</h1>
