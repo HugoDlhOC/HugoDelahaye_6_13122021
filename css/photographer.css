@@ -18,6 +18,7 @@ main {
   border-radius: 50%;
   object-fit: cover;
   grid-area: profile_picture;
+  margin-left: auto;
 }
 
 .photograph-header article {
@@ -59,6 +60,8 @@ main {
 
 #contact_me {
   grid-area: contact_btn;
+  justify-self: center;
+  align-self: center;
 }
 
 .contact_button {
@@ -82,7 +85,7 @@ main {
 .media-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding-bottom: 100px;
 }
@@ -108,12 +111,14 @@ main {
 .description_media {
   display: flex;
   align-items: center;
+  height: 91px;
 }
 
 .description_media p {
   font-size: 24px;
   color: var(--primary-red);
   margin-top: 5px;
+  max-width: fit-content; /*Evite dépacement texte*/
 }
 
 .description_media span {
@@ -454,12 +459,19 @@ form #input_message {
 
   .photograph-header img {
     order: -1;
+    margin-left: 0px;
   }
 }
 
 @media (max-width: 1280px) {
   .photograph-header h2 {
     font-size: 48px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .description_media p{
+    font-size: 18px;
   }
 }
 
@@ -535,6 +547,10 @@ form #input_message {
   .modal #dialog_title{
     font-size: 30px;
   }
+
+  .fixed_container #total_likes_photographer, #price_photographer {
+    font-size: 18px;
+}
 }
 
 @media (max-width: 375px) {
@@ -555,17 +571,3 @@ form #input_message {
     margin-left: 0px;
   }
 }
-
-/*
-@media (min-width: 640px){
-}
-
-@media (min-width: 768px){
-}
-
-@media (min-width: 1024px){
-}
-
-@media (min-width: 1280px){
-}
-*/

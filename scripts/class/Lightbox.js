@@ -11,7 +11,7 @@ export class Lightbox {
   /**
    * Permet d'afficher la lightbox
    */
-  static openLightbox() {
+  openLightbox() {
     lightbox.style.display = "block";
     lightbox.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "true");
@@ -21,7 +21,7 @@ export class Lightbox {
   /**
    * Ajoute un évènement click sur le bouton de fermeture pour ne plus afficher la lightbox
    */
-  static closeLightbox() {
+  closeLightbox() {
     lightboxCloseBtn.addEventListener("click", eventFctHideLightbox);
 
     function eventFctHideLightbox(e) {
@@ -59,7 +59,7 @@ export class Lightbox {
    * @param { Element } idCurrentMedia
    * @param { string } idPhotographer
    */
-  static displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer) {
+   displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer) {
     //le but de cette méthode est d'afficher les images/vidéos du photographe : toutes les données nécessaires sont dans dataMedias
     let idMedias = [];
     dataMedias.forEach((idMedia) => {
@@ -82,13 +82,11 @@ export class Lightbox {
       titleMediaLightbox.innerHTML = dataMedias[indexOfCurrentMedia].data.title;
 
       if (dataMedias[indexOfCurrentMedia].image === undefined) {
-        console.log("c'est une vidéo");
         typeOfMedia = "video";
       } else if (dataMedias[indexOfCurrentMedia].video === undefined) {
-        console.log("c'est une image");
         typeOfMedia = "image";
       } else {
-        console.log("aucun fichier trouvé");
+        console.log("this is not photo or video");
       }
 
       if (typeOfMedia === "image") {
@@ -153,11 +151,9 @@ export class Lightbox {
     function eventFctPreviousMedia() {
       if (indexOfCurrentMedia === 0) {
         indexOfCurrentMedia = dataMedias.length - 1;
-        console.log(indexOfCurrentMedia);
         displayVideoOrImage(indexOfCurrentMedia);
       } else {
         indexOfCurrentMedia--;
-        console.log(indexOfCurrentMedia);
         displayVideoOrImage(indexOfCurrentMedia);
       }
     }

@@ -93,10 +93,10 @@ function sortMediasByTitle(medias) {
 /**
  * Fonction qui gère l'affichage de la lightbox en créant un évènement click sur toutes les balises a, utilisation des méthodes de la classe Lightbox
  */
-function configLightbox() {
+function initLightbox() {
+  let lightbox = new Lightbox();
   linksMedias = Array.from(document.querySelectorAll(".media > a"));
   linksMedias.forEach((media) => {
-    media.removeEventListener("click", handleFunction);
     media.addEventListener("click", handleFunction);
 
     /**
@@ -105,12 +105,12 @@ function configLightbox() {
      */
     function handleFunction(e) {
       e.preventDefault();
-      Lightbox.openLightbox();
-      Lightbox.closeLightbox();
-      Lightbox.displayMediasLightbox(
+      lightbox.openLightbox();
+      lightbox.closeLightbox();
+      lightbox.displayMediasLightbox(
         Array.from(photographer.medias),
         media.children[0].id,
-        IdPhotograph
+        idPhotograph
       );
     }
   });
@@ -193,15 +193,15 @@ function displayLikedMedias(tabValueOfAllsLikes) {
 
 //Récupération de l'id du photographe transmis dans l'url
 let url = new URLSearchParams(window.location.search);
-let IdPhotograph = url.get("id");
-IdPhotograph = parseInt(IdPhotograph);
+let idPhotograph = url.get("id");
+idPhotograph = parseInt(idPhotograph);
 
 //Récupérer tableau de données
 let photographers = await getPhotographers();
 
 const photographersSection = document.querySelector(".photograph-header");
 export let photographer = photographers.find(
-  (photographer) => photographer.id === IdPhotograph
+  (photographer) => photographer.id === idPhotograph
 );
 
 //Affichage des infos du photographe
@@ -246,7 +246,7 @@ menuIconUp.addEventListener("click", () => {
 
 //Lightbox
 let linksMedias = undefined;
-configLightbox();
+initLightbox();
 
 //L'utilisateur peut aimer un media
 //div nombre total likes + tarif photographe (fixedContainer)
@@ -283,21 +283,21 @@ Array.from(filterLinks).forEach((filter) => {
       sortedMedias = sortMediasByDate(photographer.medias);
       ButtonOpenMenu.innerHTML = "Date";
       photographer = photographers.find(
-        (photographer) => photographer.id === IdPhotograph
+        (photographer) => photographer.id === idPhotograph
       );
       tabValueOfAllsLikes = toRecoverValueOfLikesAfterChanges();
     } else if (type === "popularity") {
       sortedMedias = sortMediasByPopularity(photographer.medias);
       ButtonOpenMenu.innerHTML = "Popularité";
       photographer = photographers.find(
-        (photographer) => photographer.id === IdPhotograph
+        (photographer) => photographer.id === idPhotograph
       );
       tabValueOfAllsLikes = toRecoverValueOfLikesAfterChanges();
     } else if (type === "title") {
       sortedMedias = sortMediasByTitle(photographer.medias);
       ButtonOpenMenu.innerHTML = "Titre";
       photographer = photographers.find(
-        (photographer) => photographer.id === IdPhotograph
+        (photographer) => photographer.id === idPhotograph
       );
       tabValueOfAllsLikes = toRecoverValueOfLikesAfterChanges();
     }
@@ -311,6 +311,6 @@ Array.from(filterLinks).forEach((filter) => {
     displayLikedMedias(tabValueOfAllsLikes);
 
     //Lightbox
-    configLightbox();
+    initLightbox();
   }
 });
