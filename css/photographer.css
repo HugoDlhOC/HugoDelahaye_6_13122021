@@ -23,8 +23,8 @@ main {
 
 .photograph-header article {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /*Création de colonnes*/
-  grid-template-areas:    /*Définition de qui va occuper quoi dans la grille*/
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-areas: 
     "informations_photographe           contact_btn                          profile_picture"
     "informations_photographe           contact_btn                          profile_picture"
     "informations_photographe           contact_btn                          profile_picture";
@@ -91,7 +91,6 @@ main {
 }
 
 .media-container article {
-  padding: 10px;
   margin-right: 47.5px;
   margin-left: 47.5px;
 }
@@ -110,7 +109,7 @@ main {
 
 .description_media {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   height: 91px;
 }
 
@@ -186,50 +185,55 @@ nav span{
   background-color: var(--primary-orange-blade);
 }
 
-.sort_menu_open {
+.sort_menu_open_display {
   position: relative;
+  display: flex;
+}
+
+.sort_menu_open_hide{
   display: none;
 }
 
-.sort_menu_open ul {
+.sort_menu_open_display ul {
   margin-left: -154px;
   padding-left: 0px;
   position: absolute;
   top: -38px;
+  z-index: 1;
 }
 
-.sort_menu_open .filter {
+.sort_menu_open_display .filter {
   text-decoration: none;
   list-style-type: none;
   background-color: var(--primary-red);
   padding: 10px 42px 10px 10px;
 }
 
-.sort_menu_open .filter:hover,
-.sort_menu_open:focus {
+.sort_menu_open_display .filter:hover,
+.sort_menu_open_display:focus {
   background-color: var(--primary-orange-blade);
 }
 
-.sort_menu_open #filter_1 {
+.sort_menu_open_display #filter_1 {
   border-radius: 5px 5px 0px 0px;
 }
 
-.sort_menu_open #filter_1,
+.sort_menu_open_display #filter_1,
 #filter_2 {
   border-bottom: 2px solid white;
 }
 
-.sort_menu_open #filter_3 {
+.sort_menu_open_display #filter_3 {
   border-radius: 0px 0px 5px 5px;
 }
 
-.sort_menu_open i {
+.sort_menu_open_display i {
   color: white;
   align-self: center;
   margin-right: -30px;
 }
 
-.sort_menu_open .filter_link {
+.sort_menu_open_display .filter_link {
   text-decoration: none;
   color: white;
   font-size: 18px;
@@ -362,7 +366,7 @@ form #input_message {
   padding-bottom: 70px;
 }
 /*Lightbox*/
-.lightbox_container {
+.lightbox_container_display {
   position: fixed;
   top: 0;
   left: 0;
@@ -370,6 +374,10 @@ form #input_message {
   height: 100%;
   background-color: white;
   z-index: 1;
+  display: block;
+}
+
+.lightbox_container_hide {
   display: none;
 }
 
@@ -409,7 +417,7 @@ form #input_message {
   right: 20px;
 }
 
-.lightbox_container .container_media {
+.lightbox_container_display .container_media {
   margin-left: 50px;
   margin-right: 50px;
   display: flex; /*Centrer image*/
@@ -420,26 +428,21 @@ form #input_message {
   height: 100%; /*Pour que le média occupe tout l'espace*/
 }
 
-.lightbox_container .title_media_lightbox {
+.lightbox_container_display .title_media_lightbox {
   font-size: 24px;
   color: var(--primary-red);
 }
 
-.lightbox_container .container_media img {
+.lightbox_container_display .container_media .img_lightbox_display, .lightbox_container_display .container_media .video_lightbox_display {
   width: 100%;
   height: 90%; /*Laisse de la place pour le titre du media*/
   object-fit: contain;
-  display: none;
+  display: block;
 }
 
-.lightbox_container .container_media video {
-  width: 100%;
-  height: 90%; /*Laisse de la place pour le titre du media*/
-  object-fit: contain;
+.lightbox_container_display .container_media .img_lightbox_hide, .lightbox_container_display .container_media .video_lightbox_hide {
   display: none;
 }
-
-
 
 @media (max-width: 1280px) {
   .photograph-header article {
@@ -491,10 +494,6 @@ form #input_message {
 @media (max-width: 768px) {
   .photograph-header {
     margin: 0;
-  }
-
-  .media-container article {
-    /*margin-left: 5px;*/
   }
 
   .modal header,

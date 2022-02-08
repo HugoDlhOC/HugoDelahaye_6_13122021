@@ -16,7 +16,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role="banner" id="header_page">
+    <header id="header_page">
       <a href="./index.html">
         <img
           src="assets/images/logo.png"
@@ -25,10 +25,9 @@
         />
       </a>
     </header>
-    <main id="main">
+    <main>
       <div class="photograph-header">
         <button
-          role="button"
           id="contact_me"
           class="contact_button"
           aria-label="remplir le formulaire de contact"
@@ -47,7 +46,7 @@
           ></i>
         </div>
         <div
-          class="sort_menu_open"
+          class="sort_menu_open_hide"
           role="menu"
           aria-labelledby="button_open_menu"
         >
@@ -90,7 +89,7 @@
     <!--Modal-->
     <div id="contact_modal" class="no_display">
       <div class="modal" role="dialog" aria-labelledby="dialog_title">
-        <header role="banner">
+        <header>
           <h1 id="dialog_title">Contactez-moi</h1>
           <span id="name_photographer"></span>
           <img
@@ -121,8 +120,9 @@
         </form>
       </div>
     </div>
+    <!--Lightbox-->
     <div
-      class="lightbox_container"
+      class="lightbox_container_hide"
       role="dialog"
       aria-hidden="true"
       aria-label="image closeup view"
@@ -140,8 +140,8 @@
         aria-label="bouton pour passer au média précédant"
       ></button>
       <div class="container_media">
-        <img src="#" alt="#" />
-        <video controls="controls"></video>
+        <img src="#" alt="#" class="img_lightbox_hide"/>
+        <video controls="controls" class="video_lightbox_hide"></video>
         <p class="title_media_lightbox" aria-label="le titre du média est"></p>
       </div>
     </div>

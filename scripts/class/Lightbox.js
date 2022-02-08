@@ -1,5 +1,6 @@
-const lightbox = document.querySelector(".lightbox_container");
-const main = document.querySelector("#main");
+const lightbox = document.querySelector(".lightbox_container_hide");
+const main = document.querySelector("main");
+const header = document.querySelector("header");
 const lightboxCloseBtn = document.querySelector(".lightbox_close");
 const imageLightbox = document.querySelector(".container_media img");
 const videoLightbox = document.querySelector(".container_media video");
@@ -12,10 +13,13 @@ export class Lightbox {
    * Permet d'afficher la lightbox
    */
   openLightbox() {
-    lightbox.style.display = "block";
+    lightbox.classList.replace("lightbox_container_hide", "lightbox_container_display");
     lightbox.setAttribute("aria-hidden", "false");
+    main.removeAttribute("class", "display_block");
+    header.removeAttribute("class", "display_block");
     main.setAttribute("aria-hidden", "true");
-    main.style.display = "none";
+    main.classList.add("no_display");
+    header.classList.add("no_display");
   }
 
   /**
@@ -26,14 +30,17 @@ export class Lightbox {
 
     function eventFctHideLightbox(e) {
       e.preventDefault();
-      lightbox.style.display = "none";
+      lightbox.classList.replace("lightbox_container_display", "lightbox_container_hide");
       main.setAttribute("aria-hidden", "false");
-      main.style.display = "block";
+      main.removeAttribute("class", "no_display");
+      header.removeAttribute("class", "no_display");
       lightbox.setAttribute("aria-hidden", "true");
       videoLightbox.setAttribute("title", "#");
       videoLightbox.setAttribute("src", "#");
       imageLightbox.setAttribute("alt", "#");
       imageLightbox.setAttribute("src", "#");
+
+      document.removeEventListener("keydown", eventFctEscapeKey);
     }
 
     document.addEventListener("keydown", eventFctEscapeKey);
@@ -41,14 +48,17 @@ export class Lightbox {
     function eventFctEscapeKey(e) {
       if (e.key === "Escape") {
         e.preventDefault();
-        lightbox.style.display = "none";
+        lightbox.classList.replace("lightbox_container_display", "lightbox_container_hide");
         main.setAttribute("aria-hidden", "false");
-        main.style.display = "block";
+        main.removeAttribute("class", "no_display");
+        header.removeAttribute("class", "no_display");
         lightbox.setAttribute("aria-hidden", "true");
         videoLightbox.setAttribute("title", "#");
         videoLightbox.setAttribute("src", "#");
         imageLightbox.setAttribute("alt", "#");
         imageLightbox.setAttribute("src", "#");
+
+        document.removeEventListener("keydown", eventFctEscapeKey);
       }
     }
   }
@@ -79,7 +89,7 @@ export class Lightbox {
      * @param { number } indexOfCurrentMedia
      */
     function displayVideoOrImage(indexOfCurrentMedia) {
-      titleMediaLightbox.innerHTML = dataMedias[indexOfCurrentMedia].data.title;
+      titleMediaLightbox.innerHTML = dataMedias[indexOfCurrentMedia].title;
 
       if (dataMedias[indexOfCurrentMedia].image === undefined) {
         typeOfMedia = "video";
@@ -90,28 +100,29 @@ export class Lightbox {
       }
 
       if (typeOfMedia === "image") {
-        imageLightbox.style.display = "block";
+        imageLightbox.classList.replace("img_lightbox_hide", "img_lightbox_display");
         videoLightbox.setAttribute("title", "#");
-        videoLightbox.style.display = "none";
+        videoLightbox.classList.replace("video_lightbox_display", "video_lightbox_hide");
         imageLightbox.setAttribute(
           "src",
-          `assets/photographers/medias/images/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.image}`
+          `assets/photographers/medias/images/${idPhotographer}/${dataMedias[indexOfCurrentMedia].image}`
         );
         imageLightbox.setAttribute(
           "alt",
-          `${dataMedias[indexOfCurrentMedia].data.title}, vue rapprochée`
+          `${dataMedias[indexOfCurrentMedia].title}, vue rapprochée`
         );
       } else if (typeOfMedia === "video") {
-        videoLightbox.style.display = "block";
+        videoLightbox.classList.replace("video_lightbox_hide", "video_lightbox_display");
         imageLightbox.setAttribute("alt", "#");
-        imageLightbox.style.display = "none";
+        imageLightbox.removeAttribute("class", "img_lightbox_display");
+        imageLightbox.classList.add("img_lightbox_hide");
         videoLightbox.setAttribute(
           "src",
-          `assets/photographers/medias/videos/${idPhotographer}/${dataMedias[indexOfCurrentMedia].data.video}`
+          `assets/photographers/medias/videos/${idPhotographer}/${dataMedias[indexOfCurrentMedia].video}`
         );
         videoLightbox.setAttribute(
           "title",
-          `${dataMedias[indexOfCurrentMedia].data.title}, vue rapprochée`
+          `${dataMedias[indexOfCurrentMedia].title}, vue rapprochée`
         );
       }
     }

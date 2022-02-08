@@ -1,6 +1,5 @@
 export class Photographer {
   constructor(data, medias) {
-    this.data = data;
     this.name = data.name;
     this.id = data.id;
     this.city = data.city;
@@ -26,20 +25,20 @@ export class Photographer {
     div2.setAttribute("class", "description_photograph");
     img.setAttribute(
       "src",
-      `assets/photographers/portraits/${this.data.portrait}`
+      `assets/photographers/portraits/${this.portrait}`
     ); //Ajout de l'attribut src avec la bonne source la photo (lien)
     img.setAttribute("alt", "portrait du photographe");
 
-    h2.textContent = this.data.name; //Ajout du nom du photographe
-    h3.textContent = this.data.city + ", " + this.data.country;
+    h2.textContent = this.name; //Ajout du nom du photographe
+    h3.textContent = this.city + ", " + this.country;
     h3.setAttribute("aria-label", "ville du photographe");
-    p1.textContent = this.data.tagline;
+    p1.textContent = this.tagline;
     p1.setAttribute("class", "photographer_description");
     p1.setAttribute("aria-label", "description du photographe");
-    p2.textContent = this.data.price + "€/jour";
+    p2.textContent = this.price + "€/jour";
     p2.setAttribute("class", "photographer_price");
     p2.setAttribute("aria-label", "prix du photographe par jour");
-    a.setAttribute("href", `./photographer.html?id=${this.data.id}`);
+    a.setAttribute("href", `./photographer.html?id=${this.id}`);
 
     article.appendChild(div1);
     article.appendChild(div2);
@@ -63,14 +62,14 @@ export class Photographer {
     const button = document.getElementById("contact_me");
     img.setAttribute(
       "src",
-      `assets/photographers/portraits/${this.data.portrait}`
+      `assets/photographers/portraits/${this.portrait}`
     ); //Ajout de l'attribut src avec la bonne source la photo (lien)
-    img.setAttribute("alt", `portrait du photographe ${this.data.name}`);
-    h2.textContent = this.data.name; //Ajout du nom du photographe
+    img.setAttribute("alt", `portrait du photographe ${this.name}`);
+    h2.textContent = this.name; //Ajout du nom du photographe
     h2.setAttribute("aria-label", "nom du photographe");
-    h3.textContent = this.data.city + ", " + this.data.country;
+    h3.textContent = this.city + ", " + this.country;
     h3.setAttribute("aria-label", "ville du photographe");
-    p1.textContent = this.data.tagline;
+    p1.textContent = this.tagline;
     p1.setAttribute("class", "photographer_description");
     p1.setAttribute("aria-label", "slogan du photographe");
     div.setAttribute("class", "informations_photographe");

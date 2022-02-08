@@ -94,7 +94,7 @@ function sortMediasByTitle(medias) {
  * Fonction qui gère l'affichage de la lightbox en créant un évènement click sur toutes les balises a, utilisation des méthodes de la classe Lightbox
  */
 function initLightbox() {
-  let lightbox = new Lightbox();
+  const lightbox = new Lightbox();
   linksMedias = Array.from(document.querySelectorAll(".media > a"));
   linksMedias.forEach((media) => {
     media.addEventListener("click", handleFunction);
@@ -121,7 +121,7 @@ function initLightbox() {
  */
 
 function configurationLikesUsers() {
-  let valueTotalLikes = document.querySelector("#total_likes_photographer");
+  let spanValueTotalLikes = document.querySelector("#total_likes_photographer");
   let tabValueOfAllsLikes = toRecoverValueOfLikes(); //Récupération des valeurs des likes
   hearts = document.querySelectorAll(".description_media > .fa-heart"); //Récupération de tous les coeurs de la page
   hearts.forEach((heart, index) => {
@@ -134,11 +134,11 @@ function configurationLikesUsers() {
       //Si la valeur du like correspond bien à la valeur donnée via le fichier json, il peut être liké, sinon cela veut dire qu'il a déja été liké, alors l'utilisateur peut supprimer son like
       if (valueLike === Number(tabValueOfAllsLikes[index])) {
         valueLike++;
-        valueTotalLikes.innerHTML++;
+        spanValueTotalLikes.innerHTML++;
         heart.previousElementSibling.innerHTML = valueLike.toString();
       } else if (valueLike === Number(tabValueOfAllsLikes[index]) + 1) {
         valueLike--;
-        valueTotalLikes.innerHTML--;
+        spanValueTotalLikes.innerHTML--;
         heart.previousElementSibling.innerHTML = valueLike.toString();
       }
     }
@@ -151,7 +151,7 @@ function configurationLikesUsers() {
  * @return { any[] }
  */
 function toRecoverValueOfLikes() {
-  let valueOFAllsLikes = document.getElementsByClassName("number_of_likes"); //Balises SPAN
+  const valueOFAllsLikes = document.getElementsByClassName("number_of_likes"); //Balises SPAN
   let tabValueOfAllsLikes = []; //Tableau où l'on va ranger les valeurs
   Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
     tabValueOfAllsLikes.push(valueOfLike.innerHTML);
@@ -166,7 +166,7 @@ function toRecoverValueOfLikes() {
  * @return { any[] }
  */
 function toRecoverValueOfLikesAfterChanges() {
-  let valueOFAllsLikes = document.getElementsByClassName("number_of_likes");
+  const valueOFAllsLikes = document.getElementsByClassName("number_of_likes");
   let tabValueOfAllsLikes = [];
   Array.from(valueOFAllsLikes).forEach((valueOfLike) => {
     tabValueOfAllsLikes.push(valueOfLike);
@@ -178,7 +178,7 @@ function toRecoverValueOfLikesAfterChanges() {
  * Cette fonction permet d'afficher les likes déja likés précédemment, évite un reset des valeurs lorsque l'on change l'organisation des médias avec le menu
  */
 function displayLikedMedias(tabValueOfAllsLikes) {
-  let spans = document.getElementsByClassName("number_of_likes");
+  const spans = document.getElementsByClassName("number_of_likes");
   let tabValues = [];
 
   tabValueOfAllsLikes.forEach((value) => {
@@ -192,12 +192,12 @@ function displayLikedMedias(tabValueOfAllsLikes) {
 }
 
 //Récupération de l'id du photographe transmis dans l'url
-let url = new URLSearchParams(window.location.search);
+const url = new URLSearchParams(window.location.search);
 let idPhotograph = url.get("id");
 idPhotograph = parseInt(idPhotograph);
 
 //Récupérer tableau de données
-let photographers = await getPhotographers();
+const photographers = await getPhotographers();
 
 const photographersSection = document.querySelector(".photograph-header");
 export let photographer = photographers.find(
@@ -217,7 +217,7 @@ displayDataPhotographerMedia(photographer.medias);
 //Affichage du menu lorsque l'on clique sur le bouton Popularité
 //on récupère chaque lien permettant de filtrer les oeuvres
 const filterLinks = document.querySelectorAll(".filter_link");
-const sortMenuOpenDiv = document.querySelector(".sort_menu_open");
+const sortMenuOpenDiv = document.querySelector(".sort_menu_open_hide");
 const divButtonOpenMenu = document.getElementById("button_open_menu");
 const ButtonOpenMenu = document.querySelector("#button_open_menu button");
 const menuIconDown = document.getElementById("menu_icon_down");
@@ -225,23 +225,27 @@ const menuIconUp = document.getElementById("menu_icon_up");
 
 //Si on clique sur le bouton, alors le menu s'affiche
 divButtonOpenMenu.addEventListener("click", () => {
-  sortMenuOpenDiv.style.display = "flex";
+  sortMenuOpenDiv.removeAttribute("class", "sort_menu_open_hide");
+  sortMenuOpenDiv.classList.add("sort_menu_open_display");
 });
 
 //Si on clique sur l'icone dédiée, alors le menu s'affiche
 menuIconDown.addEventListener("click", () => {
-  sortMenuOpenDiv.style.display = "flex";
+  sortMenuOpenDiv.removeAttribute("class", "sort_menu_open_hide");
+  sortMenuOpenDiv.classList.add("sort_menu_open_display");
 });
 
 //Si on clique sur un des 3 liens du menu, alors le menu disparait
 filterLinks.forEach((filterLink) => {
   filterLink.addEventListener("click", () => {
-    sortMenuOpenDiv.style.display = "none";
+    sortMenuOpenDiv.removeAttribute("class", "sort_menu_open_display");
+    sortMenuOpenDiv.classList.add("sort_menu_open_hide");
   });
 });
 //Si on clique sur l'icone dédiée, alors le menu disparait
 menuIconUp.addEventListener("click", () => {
-  sortMenuOpenDiv.style.display = "none";
+  sortMenuOpenDiv.removeAttribute("class", "sort_menu_open_display");
+  sortMenuOpenDiv.classList.add("sort_menu_open_hide");
 });
 
 //Lightbox
@@ -252,7 +256,7 @@ initLightbox();
 //div nombre total likes + tarif photographe (fixedContainer)
 //Nombre total de likes
 const totalNbLikes = calculValueTotalNumberOfLikes(photographer.medias);
-let objMedia = new Media(photographer.medias);
+const objMedia = new Media(photographer.medias);
 const DOMCard = objMedia.HTMLForFixedContainer(
   totalNbLikes,
   photographer.price
@@ -275,8 +279,8 @@ Array.from(filterLinks).forEach((filter) => {
    */
   function handleFunctionFilterEvent(event) {
     const type = event.target.getAttribute("data-filter-type");
-    let sortedMedias;
-    let tabValueOfAllsLikes;
+    let sortedMedias = undefined;
+    let tabValueOfAllsLikes = undefined;
     // on applique la fonction adaptée au type de filtre sélectionné
     if (type === "date") {
       // lancer une fonction qui va trier ton tableau medias (photographer.medias) en fonction du type de filtre sélectionné PAR SATE

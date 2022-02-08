@@ -1,7 +1,5 @@
 export class Media {
   constructor(data) {
-    //Les différents éléments du photographe vont etre créés
-    this.data = data;
     this.id = data.id;
     this.photographerId = data.photographerId;
     this.title = data.title;
@@ -20,7 +18,7 @@ export class Media {
     const numberOfLikes = document.createElement("span");
     const iconeHeart = document.createElement("i");
     divDescriptionMedia.setAttribute("class", "description_media");
-    divDescriptionMedia.setAttribute("id", this.data.title);
+    divDescriptionMedia.setAttribute("id", this.title);
     iconeHeart.setAttribute("class", "fas fa-heart");
     iconeHeart.setAttribute("aria-label", "likes");
     divMedia.setAttribute("id", "media");
@@ -33,9 +31,9 @@ export class Media {
     article.appendChild(divMedia);
     article.appendChild(divDescriptionMedia);
     divDescriptionMedia.appendChild(titleOfMedia);
-    titleOfMedia.innerHTML = this.data.title;
+    titleOfMedia.innerHTML = this.title;
     divDescriptionMedia.appendChild(numberOfLikes);
-    numberOfLikes.innerHTML = this.data.likes;
+    numberOfLikes.innerHTML = this.likes;
     divDescriptionMedia.appendChild(iconeHeart);
     return article;
   }
@@ -70,20 +68,20 @@ export class Image extends Media {
   constructDOM() {
     const image = document.createElement("img");
     const linkMedia = document.createElement("a");
-    //Link media est une balise a qui aura en attribut href la source de notre media, utilisé pour la lightbox en javascript
+    //Link media est une balise "a" qui aura en attribut href la source de notre media, utilisé pour la lightbox en javascript
     linkMedia.appendChild(image);
     linkMedia.setAttribute("class", "link_media");
     linkMedia.setAttribute(
       "href",
-      `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`
+      `assets/photographers/medias/images/${this.photographerId}/${this.image}`
     );
     linkMedia.setAttribute("title", "image du photographe");
     image.setAttribute(
       "src",
-      `assets/photographers/medias/images/${this.data.photographerId}/${this.data.image}`
+      `assets/photographers/medias/images/${this.photographerId}/${this.image}`
     );
-    image.setAttribute("alt", `${this.data.title}, vue gallerie`);
-    image.setAttribute("id", this.data.id);
+    image.setAttribute("alt", `${this.title}, vue gallerie`);
+    image.setAttribute("id", this.id);
     image.setAttribute("class", "media_image");
 
     return linkMedia;
@@ -94,20 +92,20 @@ export class Video extends Media {
   constructDOM() {
     const video = document.createElement("video");
     const linkMedia = document.createElement("a");
-    video.setAttribute("id", this.data.id);
+    video.setAttribute("id", this.id);
     video.setAttribute("controls", "controls");
     linkMedia.appendChild(video);
     linkMedia.setAttribute("class", "link_media");
     linkMedia.setAttribute(
       "href",
-      `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`
+      `assets/photographers/medias/videos/${this.photographerId}/${this.video}`
     );
     linkMedia.setAttribute("title", "video du photographe");
     video.setAttribute(
       "src",
-      `assets/photographers/medias/videos/${this.data.photographerId}/${this.data.video}`
+      `assets/photographers/medias/videos/${this.photographerId}/${this.video}`
     );
-    video.setAttribute("title", `${this.data.title}, vue gallerie`);
+    video.setAttribute("title", `${this.title}, vue gallerie`);
     return linkMedia;
   }
 }
