@@ -204,6 +204,9 @@ export let photographer = photographers.find(
   (photographer) => photographer.id === idPhotograph
 );
 
+//Affichage titre de la page en fonction du photographe actuel
+document.title = "Fisheye - " + photographer.name;
+
 //Affichage des infos du photographe
 displayDataPhotographerInfos(photographer);
 
