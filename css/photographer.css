@@ -117,7 +117,7 @@ main {
   font-size: 24px;
   color: var(--primary-red);
   margin-top: 5px;
-  max-width: fit-content; /*Evite dépacement texte*/
+  max-width: 301px; /*Evite dépacement texte*/
 }
 
 .description_media span {
@@ -475,6 +475,7 @@ form #input_message {
 @media (max-width: 1024px) {
   .description_media p {
     font-size: 18px;
+    max-width: 224px;
   }
 }
 
