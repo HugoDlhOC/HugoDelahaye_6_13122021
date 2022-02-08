@@ -13,7 +13,10 @@ export class Lightbox {
    * Permet d'afficher la lightbox
    */
   openLightbox() {
-    lightbox.classList.replace("lightbox_container_hide", "lightbox_container_display");
+    lightbox.classList.replace(
+      "lightbox_container_hide",
+      "lightbox_container_display"
+    );
     lightbox.setAttribute("aria-hidden", "false");
     main.removeAttribute("class", "display_block");
     header.removeAttribute("class", "display_block");
@@ -30,7 +33,10 @@ export class Lightbox {
 
     function eventFctHideLightbox(e) {
       e.preventDefault();
-      lightbox.classList.replace("lightbox_container_display", "lightbox_container_hide");
+      lightbox.classList.replace(
+        "lightbox_container_display",
+        "lightbox_container_hide"
+      );
       main.setAttribute("aria-hidden", "false");
       main.removeAttribute("class", "no_display");
       header.removeAttribute("class", "no_display");
@@ -48,7 +54,10 @@ export class Lightbox {
     function eventFctEscapeKey(e) {
       if (e.key === "Escape") {
         e.preventDefault();
-        lightbox.classList.replace("lightbox_container_display", "lightbox_container_hide");
+        lightbox.classList.replace(
+          "lightbox_container_display",
+          "lightbox_container_hide"
+        );
         main.setAttribute("aria-hidden", "false");
         main.removeAttribute("class", "no_display");
         header.removeAttribute("class", "no_display");
@@ -69,7 +78,7 @@ export class Lightbox {
    * @param { Element } idCurrentMedia
    * @param { string } idPhotographer
    */
-   displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer) {
+  displayMediasLightbox(dataMedias, idCurrentMedia, idPhotographer) {
     //le but de cette méthode est d'afficher les images/vidéos du photographe : toutes les données nécessaires sont dans dataMedias
     let idMedias = [];
     dataMedias.forEach((idMedia) => {
@@ -100,9 +109,15 @@ export class Lightbox {
       }
 
       if (typeOfMedia === "image") {
-        imageLightbox.classList.replace("img_lightbox_hide", "img_lightbox_display");
+        imageLightbox.classList.replace(
+          "img_lightbox_hide",
+          "img_lightbox_display"
+        );
         videoLightbox.setAttribute("title", "#");
-        videoLightbox.classList.replace("video_lightbox_display", "video_lightbox_hide");
+        videoLightbox.classList.replace(
+          "video_lightbox_display",
+          "video_lightbox_hide"
+        );
         imageLightbox.setAttribute(
           "src",
           `assets/photographers/medias/images/${idPhotographer}/${dataMedias[indexOfCurrentMedia].image}`
@@ -112,7 +127,10 @@ export class Lightbox {
           `${dataMedias[indexOfCurrentMedia].title}, vue rapprochée`
         );
       } else if (typeOfMedia === "video") {
-        videoLightbox.classList.replace("video_lightbox_hide", "video_lightbox_display");
+        videoLightbox.classList.replace(
+          "video_lightbox_hide",
+          "video_lightbox_display"
+        );
         imageLightbox.setAttribute("alt", "#");
         imageLightbox.removeAttribute("class", "img_lightbox_display");
         imageLightbox.classList.add("img_lightbox_hide");

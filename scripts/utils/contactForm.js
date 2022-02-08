@@ -10,14 +10,16 @@ const dataInputs = document.querySelectorAll("input");
 const photographInfos = document.querySelector(".photograph-header");
 const spanNamePhotographer = document.querySelector("#name_photographer");
 const firstFocusableElement = dataInputs[0];
-const lastFocusableElement = document.querySelector("#contact_modal header img");
+const lastFocusableElement = document.querySelector(
+  "#contact_modal header img"
+);
 
 function displayModal() {
   header.classList.add("decrease_opacity");
   main.classList.add("decrease_opacity");
   photographInfos.classList.add("decrease_opacity");
   spanNamePhotographer.innerHTML = photographer.name;
-  modal.classList.replace("no_display" ,"display_block");
+  modal.classList.replace("no_display", "display_block");
   header.setAttribute("aria-hidden", "true");
   main.setAttribute("aria-hidden", "true");
   photographInfos.setAttribute("aria-hidden", "true");
@@ -29,8 +31,8 @@ function displayModal() {
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.classList.replace("display_block", "no_display");
-  main.classList.replace("decrease_opacity","normal_opacity");
-  header.classList.replace("decrease_opacity","normal_opacity");
+  main.classList.replace("decrease_opacity", "normal_opacity");
+  header.classList.replace("decrease_opacity", "normal_opacity");
   photographInfos.classList.replace("decrease_opacity", "normal_opacity");
   header.setAttribute("aria-hidden", "false");
   main.setAttribute("aria-hidden", "false");

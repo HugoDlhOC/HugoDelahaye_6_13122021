@@ -23,8 +23,8 @@ main {
 
 .photograph-header article {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  grid-template-areas: 
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
     "informations_photographe           contact_btn                          profile_picture"
     "informations_photographe           contact_btn                          profile_picture"
     "informations_photographe           contact_btn                          profile_picture";
@@ -139,18 +139,17 @@ main {
 }
 
 /*MENU*/
-nav{
+nav {
   display: flex;
   align-items: center;
   margin-top: 25px;
   margin-bottom: 58px;
 }
 
-nav span{
+nav span {
   margin-left: 100px;
   font-size: 18px;
 }
-
 
 .sort_menu_close {
   margin-left: 25px;
@@ -190,7 +189,7 @@ nav span{
   display: flex;
 }
 
-.sort_menu_open_hide{
+.sort_menu_open_hide {
   display: none;
 }
 
@@ -309,26 +308,25 @@ nav span{
   font-size: 64px;
 }
 
-.normal_opacity{
+.normal_opacity {
   opacity: 1;
 }
 
-.decrease_opacity{
+.decrease_opacity {
   opacity: 0.8;
 }
 
-.no_display{
+.no_display {
   display: none;
 }
 
-.display_block{
+.display_block {
   display: block;
 }
 
-.display_flex{
+.display_flex {
   display: flex;
 }
-
 
 form {
   display: flex;
@@ -433,14 +431,16 @@ form #input_message {
   color: var(--primary-red);
 }
 
-.lightbox_container_display .container_media .img_lightbox_display, .lightbox_container_display .container_media .video_lightbox_display {
+.lightbox_container_display .container_media .img_lightbox_display,
+.lightbox_container_display .container_media .video_lightbox_display {
   width: 100%;
   height: 90%; /*Laisse de la place pour le titre du media*/
   object-fit: contain;
   display: block;
 }
 
-.lightbox_container_display .container_media .img_lightbox_hide, .lightbox_container_display .container_media .video_lightbox_hide {
+.lightbox_container_display .container_media .img_lightbox_hide,
+.lightbox_container_display .container_media .video_lightbox_hide {
   display: none;
 }
 
@@ -473,7 +473,7 @@ form #input_message {
 }
 
 @media (max-width: 1024px) {
-  .description_media p{
+  .description_media p {
     font-size: 18px;
   }
 }
@@ -485,7 +485,8 @@ form #input_message {
     margin-right: 0px;
   }
 
-  .media img, .media video{
+  .media img,
+  .media video {
     height: 225px;
     width: 275px;
   }
@@ -513,7 +514,7 @@ form #input_message {
     text-align: center;
   }
 
-  .modal #dialog_title{
+  .modal #dialog_title {
     padding: 0;
     margin-right: auto;
   }
@@ -530,30 +531,31 @@ form #input_message {
     font-size: 30px;
   }
 
-  .modal form{
+  .modal form {
     padding: 50px 20px 20px 20px;
   }
 
-  .modal form label{
+  .modal form label {
     font-size: 26px;
   }
 
-  .modal form input{
+  .modal form input {
     font-size: 26px;
     height: auto;
   }
 
-  .modal #dialog_title{
+  .modal #dialog_title {
     font-size: 30px;
   }
 
-  .fixed_container #total_likes_photographer, #price_photographer {
+  .fixed_container #total_likes_photographer,
+  #price_photographer {
     font-size: 18px;
-}
+  }
 }
 
 @media (max-width: 375px) {
-  nav span{
+  nav span {
     margin-left: 50px;
   }
 }
