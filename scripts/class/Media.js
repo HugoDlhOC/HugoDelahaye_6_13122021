@@ -18,10 +18,8 @@ export class Media {
     const numberOfLikes = document.createElement("span");
     const iconeHeart = document.createElement("i");
     divDescriptionMedia.setAttribute("class", "description_media");
-    divDescriptionMedia.setAttribute("id", this.title);
     iconeHeart.setAttribute("class", "fas fa-heart");
     iconeHeart.setAttribute("aria-label", "likes");
-    divMedia.setAttribute("id", "media");
     divMedia.setAttribute("class", "media");
     divMedia.appendChild(this.constructDOM()); // la methode constructDOM appelée sera celle de l'image ou de la vidéo, en fonction du type de l'instance courante
     titleOfMedia.setAttribute("class", "title_media");
@@ -86,7 +84,6 @@ export class Video extends Media {
     const video = document.createElement("video");
     const linkMedia = document.createElement("a");
     video.setAttribute("id", this.id);
-    video.setAttribute("controls", "controls");
     linkMedia.appendChild(video);
     linkMedia.setAttribute("class", "link_media");
     linkMedia.setAttribute(
