@@ -14,6 +14,7 @@ const lastFocusableElement = document.querySelector(
   "#contact_modal header img"
 );
 
+//Afficher le formulaire
 function displayModal() {
   header.classList.add("decrease_opacity");
   main.classList.add("decrease_opacity");
@@ -28,6 +29,7 @@ function displayModal() {
   dataInputs[0].focus();
 }
 
+//Fermer le formulaire
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.classList.replace("display_block", "no_display");
@@ -38,8 +40,10 @@ function closeModal() {
   main.setAttribute("aria-hidden", "false");
   photographInfos.setAttribute("aria-hidden", "false");
   modal.setAttribute("arria-hidden", "true");
+}
 
-  //Affichage des données saisies à la console
+//Affichage des données saisies à la console
+function displayDataConsole(){
   dataInputs.forEach((data) => {
     console.log(data.value);
   });
@@ -61,6 +65,7 @@ modalLaunchBtn.addEventListener("click", (e) => {
 modalSend.addEventListener("click", (e) => {
   e.preventDefault();
   closeModal();
+  displayDataConsole();
 });
 
 //Gestion de la navigation clavier de la modale pour que l'on ne sorte pas de cette dernière
