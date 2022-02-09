@@ -31,14 +31,13 @@ export class Photographer {
 
     h2.textContent = this.name; //Ajout du nom du photographe
     h3.textContent = this.city + ", " + this.country;
-    h3.setAttribute("aria-label", "ville du photographe");
     p1.textContent = this.tagline;
     p1.setAttribute("class", "photographer_description");
-    p1.setAttribute("aria-label", "description du photographe");
+    p1.setAttribute("aria-label", "description");
     p2.textContent = this.price + "€/jour";
     p2.setAttribute("class", "photographer_price");
-    p2.setAttribute("aria-label", "prix du photographe par jour");
     a.setAttribute("href", `./photographer.html?id=${this.id}`);
+    a.setAttribute("title", this.name);
 
     article.appendChild(div1);
     article.appendChild(div2);
@@ -64,17 +63,16 @@ export class Photographer {
       "src",
       `assets/photographers/portraits/${this.portrait}`
     ); //Ajout de l'attribut src avec la bonne source la photo (lien)
-    img.setAttribute("alt", `portrait du photographe ${this.name}`);
+    img.setAttribute("alt", `${this.name}`);
     h2.textContent = this.name; //Ajout du nom du photographe
     h2.setAttribute("aria-label", "nom du photographe");
     h3.textContent = this.city + ", " + this.country;
-    h3.setAttribute("aria-label", "ville du photographe");
     p1.textContent = this.tagline;
     p1.setAttribute("class", "photographer_description");
-    p1.setAttribute("aria-label", "slogan du photographe");
+    p1.setAttribute("aria-label", "slogan");
     div.setAttribute("class", "informations_photographe");
     article.appendChild(div);
-    div.setAttribute("aria-label", "informations du photographe");
+    div.setAttribute("aria-label", "informations");
     div.appendChild(h2);
     div.appendChild(h3);
     div.appendChild(p1);

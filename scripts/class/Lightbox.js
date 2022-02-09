@@ -109,6 +109,7 @@ export class Lightbox {
       }
 
       if (typeOfMedia === "image") {
+        lightbox.setAttribute("aria-label", "image closeup view");
         imageLightbox.classList.replace(
           "img_lightbox_hide",
           "img_lightbox_display"
@@ -124,9 +125,10 @@ export class Lightbox {
         );
         imageLightbox.setAttribute(
           "alt",
-          `${dataMedias[indexOfCurrentMedia].title}, vue rapprochée`
+          dataMedias[indexOfCurrentMedia].title
         );
       } else if (typeOfMedia === "video") {
+        lightbox.setAttribute("aria-label", "video closeup view");
         videoLightbox.classList.replace(
           "video_lightbox_hide",
           "video_lightbox_display"
@@ -140,7 +142,7 @@ export class Lightbox {
         );
         videoLightbox.setAttribute(
           "title",
-          `${dataMedias[indexOfCurrentMedia].title}, vue rapprochée`
+          dataMedias[indexOfCurrentMedia].title
         );
       }
     }

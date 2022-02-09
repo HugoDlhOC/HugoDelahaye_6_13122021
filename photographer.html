@@ -18,11 +18,11 @@
   </head>
   <body>
     <header id="header_page">
-      <a href="./index.html">
+      <a href="./index.html" title="Accueil du site">
         <img
           src="assets/images/logo.png"
           id="logo"
-          alt="Logo du site Fisheye"
+          alt="Page d'accueil Fisheye"
         />
       </a>
     </header>
@@ -31,10 +31,11 @@
         <button
           id="contact_me"
           class="contact_button"
-          aria-label="remplir le formulaire de contact"
+          aria-label="Contactez moi"
         >
           Contactez-moi
         </button>
+        <!--Menu-->
       </div>
       <nav aria-haspopup="true">
         <span>Trier par</span>
@@ -97,23 +98,22 @@
             role="button"
             src="assets/icons/close.svg"
             alt="bouton fermeture formulaire"
-            aria-label="fermer le formulaire"
           />
         </header>
         <form>
-          <div aria-label="saisir le prénom">
+          <div>
             <label for="input_first_name">Prénom</label>
             <input id="input_first_name" placeholder="Prénom" />
           </div>
-          <div aria-label="saisir le nom de famille">
+          <div>
             <label for="input_last_name">Nom</label>
             <input id="input_last_name" placeholder="Nom" />
           </div>
-          <div aria-label="saisir l'adresse mail">
+          <div>
             <label for="input_mail">Email</label>
             <input id="input_mail" placeholder="mail@domaine.com" />
           </div>
-          <div aria-label="saisir le message souhaité">
+          <div>
             <label for="input_message">Votre message</label>
             <input id="input_message" placeholder="Mon message est ..." />
           </div>
@@ -126,19 +126,18 @@
       class="lightbox_container_hide"
       role="dialog"
       aria-hidden="true"
-      aria-label="image closeup view"
     >
       <button
         class="lightbox_close"
-        aria-label="bouton pour fermer la visionneuse de médias"
+        title="fermer le dialog"
       ></button>
       <button
         class="lightbox_next"
-        aria-label="bouton pour passer au média suivant"
+        title="média suivant"
       ></button>
       <button
         class="lightbox_before"
-        aria-label="bouton pour passer au média précédant"
+        title="média précédant"
       ></button>
       <div class="container_media">
         <img src="#" alt="#" class="img_lightbox_hide" />

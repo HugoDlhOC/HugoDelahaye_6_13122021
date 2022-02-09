@@ -25,7 +25,7 @@ export class Media {
     divMedia.setAttribute("class", "media");
     divMedia.appendChild(this.constructDOM()); // la methode constructDOM appelée sera celle de l'image ou de la vidéo, en fonction du type de l'instance courante
     titleOfMedia.setAttribute("class", "title_media");
-    titleOfMedia.setAttribute("aria-label", "le titre du média");
+    titleOfMedia.setAttribute("aria-label", "titre du média");
     numberOfLikes.setAttribute("class", "number_of_likes");
     numberOfLikes.setAttribute("aria-label", "nombre de j'aime ");
     article.appendChild(divMedia);
@@ -50,13 +50,9 @@ export class Media {
     numberTotalOfLikes.textContent = numberOfLikes;
     numberTotalOfLikes.setAttribute(
       "aria-label",
-      "le nombre total de j'aime du photographe est "
+      "nombre total de likes "
     );
     priceOfPhotographer.textContent = price + "€ /jour";
-    priceOfPhotographer.setAttribute(
-      "aria-label",
-      "le prix du photographe journalier est de "
-    );
     containerPrixTotalLikes.appendChild(numberTotalOfLikes);
     containerPrixTotalLikes.appendChild(iconeHeart);
     containerPrixTotalLikes.appendChild(priceOfPhotographer);
@@ -75,12 +71,12 @@ export class Image extends Media {
       "href",
       `assets/photographers/medias/images/${this.photographerId}/${this.image}`
     );
-    linkMedia.setAttribute("title", "image du photographe");
+    linkMedia.setAttribute("title", `${this.title}, vue gallerie`);
     image.setAttribute(
       "src",
       `assets/photographers/medias/images/${this.photographerId}/${this.image}`
     );
-    image.setAttribute("alt", `${this.title}, vue gallerie`);
+    image.setAttribute("alt", this.title);
     image.setAttribute("id", this.id);
     image.setAttribute("class", "media_image");
 
@@ -100,12 +96,12 @@ export class Video extends Media {
       "href",
       `assets/photographers/medias/videos/${this.photographerId}/${this.video}`
     );
-    linkMedia.setAttribute("title", "video du photographe");
+    linkMedia.setAttribute("title", `${this.title}, vue gallerie`);
     video.setAttribute(
       "src",
       `assets/photographers/medias/videos/${this.photographerId}/${this.video}`
     );
-    video.setAttribute("title", `${this.title}, vue gallerie`);
+    video.setAttribute("title", this.title);
     return linkMedia;
   }
 }
