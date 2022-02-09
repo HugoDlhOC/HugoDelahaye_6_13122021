@@ -23,10 +23,7 @@ export class Photographer {
     const div2 = document.createElement("div");
     div1.setAttribute("class", "link_photograph");
     div2.setAttribute("class", "description_photograph");
-    img.setAttribute(
-      "src",
-      `assets/photographers/portraits/${this.portrait}`
-    ); //Ajout de l'attribut src avec la bonne source la photo (lien)
+    img.setAttribute("src", `assets/photographers/portraits/${this.portrait}`); //Ajout de l'attribut src avec la bonne source la photo (lien)
     img.setAttribute("alt", "portrait du photographe");
 
     h2.textContent = this.name; //Ajout du nom du photographe
@@ -59,10 +56,7 @@ export class Photographer {
     const p1 = document.createElement("p");
     const img = document.createElement("img"); //Créer une balise img
     const button = document.getElementById("contact_me");
-    img.setAttribute(
-      "src",
-      `assets/photographers/portraits/${this.portrait}`
-    ); //Ajout de l'attribut src avec la bonne source la photo (lien)
+    img.setAttribute("src", `assets/photographers/portraits/${this.portrait}`); //Ajout de l'attribut src avec la bonne source la photo (lien)
     img.setAttribute("alt", `${this.name}`);
     h2.textContent = this.name; //Ajout du nom du photographe
     h2.setAttribute("aria-label", "nom du photographe");

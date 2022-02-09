@@ -48,10 +48,7 @@ export class Media {
     numberTotalOfLikes.setAttribute("id", "total_likes_photographer");
     priceOfPhotographer.setAttribute("id", "price_photographer");
     numberTotalOfLikes.textContent = numberOfLikes;
-    numberTotalOfLikes.setAttribute(
-      "aria-label",
-      "nombre total de likes "
-    );
+    numberTotalOfLikes.setAttribute("aria-label", "nombre total de likes ");
     priceOfPhotographer.textContent = price + "€ /jour";
     containerPrixTotalLikes.appendChild(numberTotalOfLikes);
     containerPrixTotalLikes.appendChild(iconeHeart);
